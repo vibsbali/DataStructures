@@ -7,7 +7,7 @@ namespace ConcreteStructures
 {
     public class LinkList<T> : ICollection<T>
     {
-        private LinkListNode<T> Head { get; set; }
+        private LinkListNode<T> Head { get; set; } 
         private LinkListNode<T> Tail { get; set; }
 
         public IEnumerator<T> GetEnumerator()
@@ -45,7 +45,18 @@ namespace ConcreteStructures
 
         public bool Contains(T item)
         {
-            throw new NotImplementedException();
+            var current = Head;
+            while (current != null)
+            {
+                if (current.Value.Equals(item))
+                {
+                    return true;
+                }
+
+                current = current.Next;
+            }
+
+            return false;
         }
 
         public void CopyTo(T[] array, int arrayIndex)
