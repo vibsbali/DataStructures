@@ -5,14 +5,14 @@ using Core;
 
 namespace ConcreteStructures
 {
-    public class LinkList<T> : ICollection<T>
+    public class SinglyLinkedList<T> : ICollection<T>
     {
-        private LinkListNode<T> Head { get; set; } 
-        private LinkListNode<T> Tail { get; set; }
+        private SinglyLinkedListNode<T> Head { get; set; } 
+        private SinglyLinkedListNode<T> Tail { get; set; }
 
         public IEnumerator<T> GetEnumerator()
         {
-            LinkListNode<T> current = Head;
+            SinglyLinkedListNode<T> current = Head;
             while (current != null)
             {
                 yield return current.Value;
@@ -27,7 +27,7 @@ namespace ConcreteStructures
 
         public void Add(T item)
         {
-            var node = new LinkListNode<T>(item);
+            var node = new SinglyLinkedListNode<T>(item);
 
             if (Head == null)
             {
@@ -82,8 +82,8 @@ namespace ConcreteStructures
                 return false;
             }
 
-            LinkListNode<T> previous = null;
-            LinkListNode<T> current = Head;
+            SinglyLinkedListNode<T> previous = null;
+            SinglyLinkedListNode<T> current = Head;
 
 
             //Keep looping until end of linked list i.e. until null is found
