@@ -18,12 +18,10 @@ namespace ConsoleApp
             var list = new DoublyLinkedList<int>();
 
             list.Add(3);
-            list.Add(4);
-            list.Add(5);
-            list.Add(34);
-
             
-            list.Remove(5);
+
+            Console.WriteLine(list.Head.Value);
+            Console.WriteLine(list.Tail.Value);
             foreach (var i in list)
             {
                 Console.WriteLine(i);

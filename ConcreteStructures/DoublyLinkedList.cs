@@ -7,9 +7,8 @@ namespace ConcreteStructures
 {
     public class DoublyLinkedList<T> : ICollection<T>
     {
-        private DoublyLinkedListNode<T> Head { get; set; }
-        private DoublyLinkedListNode<T> Tail { get; set; }
-
+        public DoublyLinkedListNode<T> Head { get; private set; }
+        public DoublyLinkedListNode<T> Tail { get; private set; }
 
         public IEnumerator<T> GetEnumerator()
         {
@@ -102,20 +101,41 @@ namespace ConcreteStructures
 
         public void CopyTo(T[] array, int arrayIndex)
         {
-            throw new NotImplementedException();
+            var current = Head;
+            while (current != null)
+            {
+                array[arrayIndex] = current.Value;
+                current = current.Next;
+                arrayIndex++;
+            }
         }
 
         public bool Remove(T item)
         {
             //start with setting up base case where current is head so previous is null
             DoublyLinkedListNode<T> current = Head;
+            DoublyLinkedListNode<T> previous = null;    //This previous is local variable which tells us if we are at head or not
 
             while (current != null)
             {
                 if (current.Value.Equals(item))
                 {
-                    //Is it the first item i.e. Head
-                    if (current.Previous == null)
+                    //This will mean the loop has run once and we are no longer at Head
+                    //This also mean that the list contains more than one element
+                    if (previous != null)
+                    {
+                        //If current.next is null then it means that is tail element
+                        if (current.Next == null)
+                        {
+                            RemovedLast();
+                            return true;
+                        }
+                        
+                        //Otherwise it is going to be in the middle
+                        current.Previous.Next = current.Next;
+                        current.Next.Previous = current.Previous;
+                    }
+                    else //If it is null then it means it is head element
                     {
                         //Does list has only one item it means this is head and tail
                         if (Count == 1)
@@ -126,35 +146,14 @@ namespace ConcreteStructures
 
                         Head = current.Next;
                         Head.Previous = null;
-
-                        Count--;
-                        return true;
                     }
 
-                    //Is it the Tail
-                    if (current.Next == null)
-                    {
-                        //Does list has only one item it means this is head and tail
-                        if (Count == 1)
-                        {
-                            RemovedLast();
-                            return true;
-                        }
-
-                        Tail = current.Previous;
-                        Tail.Next = null;
-
-                        Count--;
-                        return true;
-                    }
-
-                    //Otherwise it is going to be in the middle
-                    current.Previous.Next = current.Next;
-                    current.Next.Previous = current.Previous;
                     Count--;
                     return true;
                 }
 
+                //set previous to current and current to next item in the list
+                previous = current;
                 current = current.Next;
             }
 
