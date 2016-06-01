@@ -23,6 +23,7 @@ namespace ConcreteStructures
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
+
         }
 
         public void Add(T item)
