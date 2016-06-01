@@ -8,29 +8,19 @@ namespace ConsoleApp
     {
         static void Main(string[] args)
         {
-            var list = new CircularLinkedList<int>();
-            list.Add(3);
-            list.Add(4);
-            list.Add(5);
+            Console.WriteLine("Enter Quit to exit");
+            var input = "";
+            var circularQueue = new CircularLinkedList<int>();
 
-            foreach (var i in list)
+            while (input.ToLower() != "quit")
             {
-                Console.WriteLine(i);
-            }
+                input = Console.ReadLine();
+                circularQueue.Add(int.Parse(input));
 
-            Console.WriteLine(list.Contains(4));
-            Console.WriteLine(list.Contains(42));
-
-            list.Remove(5);
-            list.Remove(1);
-            list.Remove(3);
-            list.Remove(42);
-            list.Remove(4);
-
-            list.Add(5);
-            foreach (var i in list)
-            {
-                Console.WriteLine(i);
+                foreach (var i in circularQueue)
+                {
+                    Console.Write(i);
+                }
             }
         }
 

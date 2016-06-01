@@ -8,7 +8,10 @@ namespace ConcreteStructures
     public class CircularLinkedList<T> : ICollection<T>
     {
         public SinglyLinkedListNode<T> Head { get; private set; }
-        public SinglyLinkedListNode<T> Tail { get; private set; } 
+        public SinglyLinkedListNode<T> Tail { get; private set; }
+
+        //Added a max size of 10 (default)
+        public uint MaxSize { get; set; } = 10;
 
         public IEnumerator<T> GetEnumerator()
         {
@@ -37,6 +40,12 @@ namespace ConcreteStructures
         //This add items to end
         public void Add(T item)
         {
+            //Added a while loop because MaxSize is a public property and can be changed dynamically
+            while (Count >= MaxSize)
+            {
+                RemoveFirst();
+            }
+
             if (Head == null)
             {
                 Head = new SinglyLinkedListNode<T>(item);
@@ -51,6 +60,23 @@ namespace ConcreteStructures
 
             Tail.Next = Head;
             Count++;
+        }
+
+        //Removing from the front because we have 
+        public void RemoveFirst()
+        {
+            if (Count > 0)
+            {
+                if (Head == Tail)
+                {
+                    Clear();
+                    return;
+                }
+
+                var item = Head.Next;
+                Head = item;
+                Count--;
+            }
         }
 
         public void Clear()
@@ -88,6 +114,11 @@ namespace ConcreteStructures
 
         public bool Remove(T item)
         {
+            if (Count == 0)
+            {
+                return false;
+            }
+
             var current = Head;
             SinglyLinkedListNode<T> previous = null;
 
@@ -106,15 +137,18 @@ namespace ConcreteStructures
                         {
                             Tail = previous;
                             Tail.Next = Head;
+                            Count--;
                             return true;
                         }
 
                         previous.Next = current.Next;
+                        Count--;
                         return true;
                     }
                     //if previous is null and current item is found then it has to be head
                     Head = current.Next;
                     Tail.Next = Head;
+                    Count--;
                     return true;
                 }
                 previous = current;
