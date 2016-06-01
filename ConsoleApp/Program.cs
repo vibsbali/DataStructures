@@ -17,10 +17,17 @@ namespace ConsoleApp
 
             var list = new DoublyLinkedList<int>();
 
-            list.AddFirst(3);
-            list.AddFirst(4);
+            list.Add(3);
+            list.Add(4);
+            list.Add(5);
+            list.Add(34);
 
-            Console.WriteLine(list.Contains(5));
+            
+            list.Remove(5);
+            foreach (var i in list)
+            {
+                Console.WriteLine(i);
+            }
         }
 
         static void Print(Node node)

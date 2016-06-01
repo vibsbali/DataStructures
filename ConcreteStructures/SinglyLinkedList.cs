@@ -127,9 +127,6 @@ namespace ConcreteStructures
 
         public int Count { get; private set; }
 
-        public bool IsReadOnly
-        {
-            get { return false; }
-        }
+        public bool IsReadOnly => false;
     }
 }

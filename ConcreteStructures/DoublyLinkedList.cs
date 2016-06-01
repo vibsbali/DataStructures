@@ -8,7 +8,7 @@ namespace ConcreteStructures
     public class DoublyLinkedList<T> : ICollection<T>
     {
         private DoublyLinkedListNode<T> Head { get; set; }
-        private DoublyLinkedListNode<T> Tail { get; set; } 
+        private DoublyLinkedListNode<T> Tail { get; set; }
 
 
         public IEnumerator<T> GetEnumerator()
@@ -107,7 +107,58 @@ namespace ConcreteStructures
 
         public bool Remove(T item)
         {
-            throw new NotImplementedException();
+            //start with setting up base case where current is head so previous is null
+            DoublyLinkedListNode<T> current = Head;
+
+            while (current != null)
+            {
+                if (current.Value.Equals(item))
+                {
+                    //Is it the first item i.e. Head
+                    if (current.Previous == null)
+                    {
+                        //Does list has only one item it means this is head and tail
+                        if (Count == 1)
+                        {
+                            RemoveFirst();
+                            return true;
+                        }
+
+                        Head = current.Next;
+                        Head.Previous = null;
+
+                        Count--;
+                        return true;
+                    }
+
+                    //Is it the Tail
+                    if (current.Next == null)
+                    {
+                        //Does list has only one item it means this is head and tail
+                        if (Count == 1)
+                        {
+                            RemovedLast();
+                            return true;
+                        }
+
+                        Tail = current.Previous;
+                        Tail.Next = null;
+
+                        Count--;
+                        return true;
+                    }
+
+                    //Otherwise it is going to be in the middle
+                    current.Previous.Next = current.Next;
+                    current.Next.Previous = current.Previous;
+                    Count--;
+                    return true;
+                }
+
+                current = current.Next;
+            }
+
+            return false;
         }
 
         public void RemoveFirst()
