@@ -52,8 +52,20 @@ namespace ConcreteStructures
 
         public void AddLast(T value)
         {
-            //Invoke Add method
-            Add(value);
+            var node = new DoublyLinkedListNode<T>(value);
+
+            if (Count == 0)
+            {
+                Head = node;
+            }
+            else
+            {
+                Tail.Next = node;
+                node.Previous = Tail;
+            }
+
+            Tail = node;
+            Count++;
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -63,7 +75,7 @@ namespace ConcreteStructures
 
         public void Add(T item)
         {
-            
+            AddLast(item);
         }
 
         public void Clear()
@@ -96,6 +108,43 @@ namespace ConcreteStructures
         public bool Remove(T item)
         {
             throw new NotImplementedException();
+        }
+
+        public void RemoveFirst()
+        {
+            //Remove head if count is not 0
+            if (Count == 0) return;
+
+            var node = Head;
+            Head = node.Next;
+            Count--;
+
+            if (Count == 0)
+            {
+                Tail = null;
+            }
+            else
+            {
+                Head.Previous = null;
+            }
+        }
+
+        public void RemovedLast()
+        {
+            //start from end and check if item exists
+            if (Count == 0) return;
+
+            if (Count == 1)
+            {
+                Head = Tail = null;
+            }
+            else
+            {
+                var node = Tail;
+                Tail = node.Previous;
+                Tail.Next = null;
+            }
+            Count--;
         }
 
         public int Count { get; private set; }

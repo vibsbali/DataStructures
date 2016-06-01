@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using ConcreteStructures;
 using Core;
 
 namespace ConsoleApp
@@ -11,12 +11,16 @@ namespace ConsoleApp
             var firstNode = new Node {Value = 3 };
 
             var middleNode = new Node { Value = 5 };
-            firstNode.Next = middleNode;
+            
 
             var lastNode = new Node { Value = 7 };
-            middleNode.Next = lastNode;
 
-            Print(firstNode);
+            var list = new DoublyLinkedList<int>();
+
+            list.AddFirst(3);
+            list.AddFirst(4);
+
+            Console.WriteLine(list.Contains(5));
         }
 
         static void Print(Node node)

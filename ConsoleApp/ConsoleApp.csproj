@@ -50,6 +50,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ConcreteStructures\ConcreteStructures.csproj">
+      <Project>{A65EDB6D-9262-4A98-9601-DD52C6C2ADC0}</Project>
+      <Name>ConcreteStructures</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Core\Core.csproj">
       <Project>{99ACF8AA-9B08-4F8C-A1AC-6FB9EEF6F725}</Project>
       <Name>Core</Name>
