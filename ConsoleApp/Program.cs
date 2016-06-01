@@ -8,20 +8,26 @@ namespace ConsoleApp
     {
         static void Main(string[] args)
         {
-            var firstNode = new Node {Value = 3 };
-
-            var middleNode = new Node { Value = 5 };
-            
-
-            var lastNode = new Node { Value = 7 };
-
-            var list = new DoublyLinkedList<int>();
-
+            var list = new CircularLinkedList<int>();
             list.Add(3);
-            
+            list.Add(4);
+            list.Add(5);
 
-            Console.WriteLine(list.Head.Value);
-            Console.WriteLine(list.Tail.Value);
+            foreach (var i in list)
+            {
+                Console.WriteLine(i);
+            }
+
+            Console.WriteLine(list.Contains(4));
+            Console.WriteLine(list.Contains(42));
+
+            list.Remove(5);
+            list.Remove(1);
+            list.Remove(3);
+            list.Remove(42);
+            list.Remove(4);
+
+            list.Add(5);
             foreach (var i in list)
             {
                 Console.WriteLine(i);
