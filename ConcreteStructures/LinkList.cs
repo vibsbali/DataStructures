@@ -45,7 +45,8 @@ namespace ConcreteStructures
 
         public void Clear()
         {
-            throw new NotImplementedException();
+            Head = Tail = null;
+            Count = 0;
         }
 
         public bool Contains(T item)
@@ -66,7 +67,12 @@ namespace ConcreteStructures
 
         public void CopyTo(T[] array, int arrayIndex)
         {
-            throw new NotImplementedException();
+            var current = Head;
+            while (current != null)
+            {
+                array[arrayIndex++] = current.Value;
+                current = current.Next;
+            }
         }
 
         public bool Remove(T item)
@@ -120,6 +126,10 @@ namespace ConcreteStructures
         }
 
         public int Count { get; private set; }
-        public bool IsReadOnly { get; }
+
+        public bool IsReadOnly
+        {
+            get { return false; }
+        }
     }
 }
