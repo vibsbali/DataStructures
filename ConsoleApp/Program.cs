@@ -34,7 +34,7 @@ namespace ConsoleApp
             {
                 Console.WriteLine(node);
                 node = node.Next;
-            }
+            } 
         }
     }
 }
