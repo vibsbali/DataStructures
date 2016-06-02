@@ -22,6 +22,7 @@ namespace ConcreteStructures
             backingArray = new T[length];
         }
 
+        //The cost of doubling the array is amortized over the adding process therefore the Add method's complexity is O(1)
         private void GrowArray()
         {
             int newLength = backingArray.Length == 0 ? 16 : backingArray.Length << 1;
