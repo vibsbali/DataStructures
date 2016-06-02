@@ -6,7 +6,7 @@ namespace ConcreteStructures
 {
     public class ArrayList<T> : IList<T>
     {
-        private T[] items;
+        private T[] backingArray;
 
         public ArrayList() : this(0)
         {
@@ -19,16 +19,16 @@ namespace ConcreteStructures
                 throw new ArgumentException("length");
             }
 
-            items = new T[length];
+            backingArray = new T[length];
         }
 
         private void GrowArray()
         {
-            int newLength = items.Length == 0 ? 16 : items.Length << 1;
+            int newLength = backingArray.Length == 0 ? 16 : backingArray.Length << 1;
             var newArray = new T[newLength];
 
-            items.CopyTo(newArray, 0);
-            items = newArray;
+            backingArray.CopyTo(newArray, 0);
+            backingArray = newArray;
         }
 
         public IEnumerator<T> GetEnumerator()
@@ -43,7 +43,12 @@ namespace ConcreteStructures
 
         public void Add(T item)
         {
-            throw new NotImplementedException();
+            if (backingArray.Length == Count)
+            {
+                GrowArray();
+            }
+
+            backingArray[Count++] = item;
         }
 
         public void Clear()
@@ -53,7 +58,15 @@ namespace ConcreteStructures
 
         public bool Contains(T item)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < Count; i++)
+            {
+                if (backingArray[i].Equals(item))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         public void CopyTo(T[] array, int arrayIndex)
@@ -63,7 +76,16 @@ namespace ConcreteStructures
 
         public bool Remove(T item)
         {
-            throw new NotImplementedException();
+            for (var i = 0; i < Count; i++)
+            {
+                if (backingArray[i].Equals(item))
+                {
+                    RemoveAt(i);
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         public int Count { get; private set; }
@@ -82,21 +104,31 @@ namespace ConcreteStructures
                 throw new IndexOutOfRangeException();
             }
 
-            if (items.Length == Count)
+            if (backingArray.Length == Count)
             {
                 GrowArray();
             }
 
             //Shift all the items following index one slot to the right
-            Array.Copy(items, index, items, index + 1, Count - index);
-            items[index] = item;
+            Array.Copy(backingArray, index, backingArray, index + 1, Count - index);
+            backingArray[index] = item;
 
             Count++;
         }
 
         public void RemoveAt(int index)
         {
-            throw new NotImplementedException();
+            if (index >= Count)
+            {
+                throw new IndexOutOfRangeException();
+            }
+
+            int shiftStart = index + 1;
+            if (shiftStart < Count)
+            {
+                Array.Copy(backingArray, shiftStart, backingArray, index, Count - shiftStart);
+            }
+            Count--;
         }
 
         public T this[int index]
