@@ -34,7 +34,10 @@ namespace ConcreteStructures
 
         public IEnumerator<T> GetEnumerator()
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < Count; i++)
+            {
+                yield return backingArray[i];
+            }
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -54,25 +57,18 @@ namespace ConcreteStructures
 
         public void Clear()
         {
-            throw new NotImplementedException();
+            backingArray = new T[0];
+            Count = 0;
         }
 
         public bool Contains(T item)
         {
-            for (int i = 0; i < Count; i++)
-            {
-                if (backingArray[i].Equals(item))
-                {
-                    return true;
-                }
-            }
-
-            return false;
+            return IndexOf(item) != -1;
         }
 
         public void CopyTo(T[] array, int arrayIndex)
         {
-            throw new NotImplementedException();
+            Array.Copy(backingArray, 0, array, arrayIndex, Count);
         }
 
         public bool Remove(T item)
@@ -91,11 +87,19 @@ namespace ConcreteStructures
 
         public int Count { get; private set; }
 
-        public bool IsReadOnly { get; }
+        public bool IsReadOnly => false;
 
         public int IndexOf(T item)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < Count; i++)
+            {
+                if (backingArray[i].Equals(item))
+                {
+                    return i;
+                }
+            }
+
+            return -1;
         }
 
         public void Insert(int index, T item)
@@ -134,8 +138,25 @@ namespace ConcreteStructures
 
         public T this[int index]
         {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
+            get
+            {
+                if (index < Count)
+                {
+                    return backingArray[index];
+                }
+
+                throw new IndexOutOfRangeException();
+            }
+
+            set
+            {
+                if (index < Count)
+                {
+                    backingArray[index] = value;
+                }
+
+                throw new IndexOutOfRangeException();
+            }
         }
     }
 }
