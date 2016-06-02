@@ -22,6 +22,14 @@ namespace ConcreteStructures
             items = new T[length];
         }
 
+        private void GrowArray()
+        {
+            int newLength = items.Length == 0 ? 16 : items.Length << 1;
+            var newArray = new T[newLength];
+
+            items.CopyTo(newArray, 0);
+            items = newArray;
+        }
 
         public IEnumerator<T> GetEnumerator()
         {
@@ -58,7 +66,8 @@ namespace ConcreteStructures
             throw new NotImplementedException();
         }
 
-        public int Count { get; }
+        public int Count { get; private set; }
+
         public bool IsReadOnly { get; }
 
         public int IndexOf(T item)
@@ -68,7 +77,21 @@ namespace ConcreteStructures
 
         public void Insert(int index, T item)
         {
-            throw new NotImplementedException();
+            if (index >= Count)
+            {
+                throw new IndexOutOfRangeException();
+            }
+
+            if (items.Length == Count)
+            {
+                GrowArray();
+            }
+
+            //Shift all the items following index one slot to the right
+            Array.Copy(items, index, items, index + 1, Count - index);
+            items[index] = item;
+
+            Count++;
         }
 
         public void RemoveAt(int index)
