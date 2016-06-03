@@ -43,6 +43,7 @@
     <Compile Include="ArrayList.cs" />
     <Compile Include="CircularLinkedList.cs" />
     <Compile Include="Deque.cs" />
+    <Compile Include="DequeOfArray.cs" />
     <Compile Include="DoublyLinkedList.cs" />
     <Compile Include="DsQueue.cs" />
     <Compile Include="DsStack.cs" />
