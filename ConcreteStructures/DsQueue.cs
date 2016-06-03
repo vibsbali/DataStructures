@@ -3,20 +3,16 @@ using System.Collections.Generic;
 
 namespace ConcreteStructures
 {
-    public class DsStack<T>
+    public class DsQueue<T>
     {
-        private readonly LinkedList<T> backingLinkedList;
-        public DsStack()
-        {
-            backingLinkedList = new LinkedList<T>();
-        }
+        private readonly LinkedList<T> backingLinkedList = new LinkedList<T>();
 
-        public void Push(T item)
+        public void Enqueue(T item)
         {
             backingLinkedList.AddLast(item);
         }
 
-        public T Pop()
+        public T Dequeue()
         {
             if (backingLinkedList.Count == 0)
             {
