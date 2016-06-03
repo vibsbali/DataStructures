@@ -16,11 +16,11 @@ namespace ConcreteStructures
         {
             if (backingLinkedList.Count == 0)
             {
-                throw new InvalidOperationException("Stack is empty");
+                throw new InvalidOperationException("Queue is empty");
             }
 
-            var item = backingLinkedList.Last.Value;
-            backingLinkedList.RemoveLast();
+            var item = backingLinkedList.First.Value;
+            backingLinkedList.RemoveFirst();
             return item;
         }
 
@@ -28,10 +28,10 @@ namespace ConcreteStructures
         {
             if (backingLinkedList.Count == 0)
             {
-                throw new InvalidOperationException("Stack is empty");
+                throw new InvalidOperationException("Queue is empty");
             }
 
-            return backingLinkedList.Last.Value;
+            return backingLinkedList.First.Value;
         }
 
         public int Count()
