@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Principal;
 using ConcreteStructures;
 using Core;
 
@@ -10,27 +11,65 @@ namespace ConsoleApp
         {
             Console.WriteLine("Enter Quit to exit");
             var input = "";
-            var circularQueue = new CircularLinkedList<int>();
-
-            while (input.ToLower() != "quit")
+            var stack = new DsStack<string>();
+            
+            while (!(input.ToLower() == "quit"))
             {
                 input = Console.ReadLine();
-                circularQueue.Add(int.Parse(input));
+                int rhs = 0;
+                int lhs = 0;
 
-                foreach (var i in circularQueue)
+                switch (input)
                 {
-                    Console.Write(i);
+                    case "+":
+                        rhs = int.Parse(stack.Pop());
+                        lhs = int.Parse(stack.Pop());
+                        stack.Push((rhs + lhs).ToString());
+                        break;
+                    case "-":
+                        rhs = int.Parse(stack.Pop());
+                        lhs = int.Parse(stack.Pop());
+                        stack.Push((rhs + lhs).ToString());
+                        break;
+                    case "*":
+                        rhs = int.Parse(stack.Pop());
+                        lhs = int.Parse(stack.Pop());
+                        stack.Push((rhs + lhs).ToString());
+                        break;
+                    case "/":
+                        rhs = int.Parse(stack.Pop());
+                        lhs = int.Parse(stack.Pop());
+                        stack.Push((rhs + lhs).ToString());
+                        break;
+                    case "%":
+                        rhs = int.Parse(stack.Pop());
+                        lhs = int.Parse(stack.Pop());
+                        stack.Push((rhs + lhs).ToString());
+                        break;
+                    case "quit":
+                        Print(stack);
+                        return;
+                    default:
+                        try
+                        {
+                            int.Parse(input);
+                            stack.Push(input);
+                            break;
+                        }
+                        catch (Exception)
+                        {
+                            throw new ArgumentException("Unrecognized token : " + input);
+                        }
+                        
                 }
-            }
-        }
+            }}
 
-        static void Print(Node node)
+        static void Print(DsStack<string> stack)
         {
-            while (node != null)
+            for (int i = 0; i < stack.Count(); i++)
             {
-                Console.WriteLine(node);
-                node = node.Next;
-            } 
+                Console.WriteLine(stack.Pop());
+            }
         }
     }
 }
