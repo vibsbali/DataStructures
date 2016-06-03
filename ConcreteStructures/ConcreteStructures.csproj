@@ -43,6 +43,7 @@
     <Compile Include="ArrayList.cs" />
     <Compile Include="CircularLinkedList.cs" />
     <Compile Include="DoublyLinkedList.cs" />
+    <Compile Include="DsStack.cs" />
     <Compile Include="SinglyLinkedList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
