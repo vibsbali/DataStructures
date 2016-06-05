@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Core;
 
 namespace ConcreteStructures
@@ -78,7 +75,8 @@ namespace ConcreteStructures
 
         public void Clear()
         {
-            throw new NotImplementedException();
+            Head = null;
+            Count = 0;
         }
 
         public bool Contains(T item)
@@ -88,10 +86,10 @@ namespace ConcreteStructures
                 return false;
             }
 
-            return FindWithParent(Head, item) != null;
+            return FindNode(Head, item) != null;
         }
 
-        private BinaryTreeNode<T> FindWithParent(BinaryTreeNode<T> binaryTreeNode, T item)
+        private BinaryTreeNode<T> FindNode(BinaryTreeNode<T> binaryTreeNode, T item)
         {
             if (binaryTreeNode == null)
             {
@@ -102,12 +100,12 @@ namespace ConcreteStructures
             {
                 return binaryTreeNode;
             }
-            if(item.CompareTo(binaryTreeNode.Value) < 0)
-            {                
-                return FindWithParent(binaryTreeNode.Left, item);
+            if (item.CompareTo(binaryTreeNode.Value) < 0)
+            {
+                return FindNode(binaryTreeNode.Left, item);
             }
 
-            return FindWithParent(binaryTreeNode.Right, item);
+            return FindNode(binaryTreeNode.Right, item);
         }
 
         public void CopyTo(T[] array, int arrayIndex)
@@ -117,10 +115,82 @@ namespace ConcreteStructures
 
         public bool Remove(T item)
         {
-            throw new NotImplementedException();
-            //BinaryTreeNode<T> current, parent;
+            //Find the node if present starting from head
+            var nodeToRemove = FindNode(Head, item);
 
-            //current = FindWithParent(current, item);
+            //If nothing found
+            if (nodeToRemove == null)
+            {
+                return false;
+            }
+
+            //If we have passed the previous check then, it means that we have found the node to be removed so count--
+            Count--;
+
+            if (Count == 0)//i.e. Head to be removed
+            {
+                Clear();    //Call Clear
+            }
+
+            //Case 1: If node to remove has no right child, current's left replaces current
+            if (nodeToRemove.Right == null)
+            {
+                var parent = nodeToRemove.Parent;   //get a reference of parent
+                var nodeToMoveInPlace = nodeToRemove.Left; //get a reference to the node that is going into place of removed node
+
+                parent.Left = nodeToMoveInPlace;    //update parent's left node
+                nodeToMoveInPlace.Parent = parent;  //update node's parent pointer
+                return true;
+            }
+            //Case 2: If node to remove has a right child which, in turn, has no left child
+            if (nodeToRemove.Right.Left == null)
+            {
+                var parent = nodeToRemove.Parent;
+                var nodeToMoveInPlace = nodeToRemove.Right;
+
+                parent.Left = nodeToMoveInPlace;
+                nodeToMoveInPlace.Parent = parent;
+
+                //fix moved node's left child
+                nodeToMoveInPlace.Left = nodeToRemove.Left;
+                nodeToRemove.Left.Parent = nodeToMoveInPlace;
+
+                return true;
+            }
+            //Case 3: If node to remove has a right child which, in turn, has a left child
+            if (nodeToRemove.Right.Left != null)
+            {
+                var parent = nodeToRemove.Parent;
+                var nodeToMoveInPlace = FindLeftMostNode(nodeToRemove.Right);
+                var parentOfNodeToMoveInPlace = nodeToMoveInPlace.Parent;
+
+                //update parent references
+                parent.Left = nodeToMoveInPlace;
+                nodeToMoveInPlace.Parent = parent;
+                
+                //fix moved node's left child
+                nodeToMoveInPlace.Left = nodeToRemove.Left;
+                nodeToRemove.Left.Parent = nodeToMoveInPlace;
+
+                //fix moved node's right child
+                nodeToMoveInPlace.Right = nodeToRemove.Right;
+
+                parentOfNodeToMoveInPlace.Left = null;
+
+                return true;
+            }
+
+            throw new Exception("Unknown case found"); //Intentionally throwing an error if none of the above case is found
+        }
+
+        private BinaryTreeNode<T> FindLeftMostNode(BinaryTreeNode<T> current)
+        {
+            while (current.Left != null)
+            {
+                FindLeftMostNode(current.Left);
+            }
+
+            return current;
         }
 
         public int Count { get; private set; }
