@@ -47,6 +47,7 @@
     <Compile Include="DequeOfArray.cs" />
     <Compile Include="DoublyLinkedList.cs" />
     <Compile Include="DsQueue.cs" />
+    <Compile Include="DsSet.cs" />
     <Compile Include="DsStack.cs" />
     <Compile Include="SinglyLinkedList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
