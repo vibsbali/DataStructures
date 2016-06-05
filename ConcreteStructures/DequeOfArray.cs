@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.Eventing.Reader;
 
 namespace ConcreteStructures
 {
@@ -82,7 +81,7 @@ namespace ConcreteStructures
                 throw new InvalidOperationException("Deque is empty");
             }
 
-           
+            throw new NotImplementedException();
         }
 
         public T DequeueLast()
@@ -92,7 +91,7 @@ namespace ConcreteStructures
                 throw new InvalidOperationException("Deque is empty");
             }
 
-           
+            throw new NotImplementedException();
         }
 
         public T PeekFirst()
@@ -101,7 +100,8 @@ namespace ConcreteStructures
             {
                 throw new InvalidOperationException("Deque is empty");
             }
-           
+
+            throw new NotImplementedException();
         }
 
         public T PeekLast()
@@ -110,15 +110,10 @@ namespace ConcreteStructures
             {
                 throw new InvalidOperationException("Deque is empty");
             }
-           
+            throw new NotImplementedException();
         }
 
-        public int Count
-        {
-            get
-            {
-                return;
-            }
-        }
+        public int Count => backingArray.Length;
+        
     }
 }

@@ -11,7 +11,7 @@ namespace ConcreteStructures
     public class BinaryTree<T> : ICollection<T>
             where T : IComparable<T>
     {
-        private BinaryTreeNode<T> head;
+        public BinaryTreeNode<T> Head { get; private set; }
 
         public IEnumerator<T> GetEnumerator()
         {
@@ -25,13 +25,13 @@ namespace ConcreteStructures
 
         public void Add(T item)
         {
-            if (head == null)
+            if (Head == null)
             {
-                head = new BinaryTreeNode<T>(item);
+                Head = new BinaryTreeNode<T>(item);
             }
             else
             {
-                AddTo(head, item);
+                AddTo(Head, item);
             }
 
             Count++;
@@ -83,26 +83,24 @@ namespace ConcreteStructures
 
         public bool Contains(T item)
         {
-            if (head == null)
+            if (Head == null)
             {
                 return false;
             }
-            else
-            {
-               return FindWithParent(head, item);
-            }
+
+            return FindWithParent(Head, item) != null;
         }
 
-        private bool FindWithParent(BinaryTreeNode<T> binaryTreeNode, T item)
+        private BinaryTreeNode<T> FindWithParent(BinaryTreeNode<T> binaryTreeNode, T item)
         {
             if (binaryTreeNode == null)
             {
-                return false;
+                return null;
             }
 
             if (item.CompareTo(binaryTreeNode.Value) == 0)
             {
-                return true;
+                return binaryTreeNode;
             }
             if(item.CompareTo(binaryTreeNode.Value) < 0)
             {                
@@ -119,9 +117,10 @@ namespace ConcreteStructures
 
         public bool Remove(T item)
         {
-            BinaryTreeNode<T> current, parent;
+            throw new NotImplementedException();
+            //BinaryTreeNode<T> current, parent;
 
-            current = FindWithParent(current, item);
+            //current = FindWithParent(current, item);
         }
 
         public int Count { get; private set; }
