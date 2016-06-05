@@ -59,5 +59,51 @@ namespace ConcreteStructures
         {
             return GetEnumerator();
         }
+
+        public DsSet<T> Union(DsSet<T> other)
+        {
+            var firstSet = new DsSet<T>(BackingStore);
+
+            foreach (var item in other)
+            {
+                if (!firstSet.Contains(item))
+                {
+                    firstSet.Add(item);
+                }
+            }
+
+            return firstSet;
+        }
+
+        public DsSet<T> Intersection(DsSet<T> other)
+        {
+            var setToReturn = new DsSet<T>();
+            foreach (var item in BackingStore)
+            {
+                if (other.BackingStore.Contains(item))
+                {
+                    setToReturn.Add(item);
+                }
+            }
+
+            return setToReturn;
+        }
+
+        public DsSet<T> Difference(DsSet<T> other)
+        {
+            var setToReturn = new DsSet<T>(BackingStore);
+
+            foreach (var item in setToReturn)
+            {
+                if (other.BackingStore.Contains(item))
+                {
+                    setToReturn.Remove(item);
+                }
+            }
+
+            return setToReturn;
+        }   
+
+
     }
 }
