@@ -7,6 +7,7 @@ namespace Core
     {
         public T Value { get; }
 
+        public BinaryTreeNode<T> Parent { get; set; }
         public BinaryTreeNode<T> Right { get; set; }
         public BinaryTreeNode<T> Left { get; set; }
 
