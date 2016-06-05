@@ -28,11 +28,44 @@ namespace ConcreteStructures
             if (head == null)
             {
                 head = new BinaryTreeNode<T>(item);
-                Count++;
-                return;
+            }
+            else
+            {
+                AddTo(head, item);
             }
 
+            Count++;
+        }
 
+        private void AddTo(BinaryTreeNode<T> binaryTreeNode, T item)
+        {
+            //check if the item to add is less than node's value
+            if (item.CompareTo(binaryTreeNode.Value) < 0)
+            {
+                //if there is no left child, make this the new left child
+                if (binaryTreeNode.Left == null)
+                {
+                    binaryTreeNode.Left = new BinaryTreeNode<T>(item);
+                }
+                else
+                {
+                    //Otherwise recursively call AddTo with the node and item to add
+                    AddTo(binaryTreeNode.Left, item);
+                }
+            }
+            //value is equal to or greater than the current value
+            else
+            {
+                if (binaryTreeNode.Right == null)
+                {
+                    binaryTreeNode.Right = new BinaryTreeNode<T>(item);
+                }
+                else
+                {
+                    //else add to the right node by recursively calling AddTo
+                    AddTo(binaryTreeNode.Right, item);
+                }
+            }
         }
 
         public void Clear()

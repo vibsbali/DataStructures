@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArrayList.cs" />
+    <Compile Include="BinaryTree.cs" />
     <Compile Include="CircularLinkedList.cs" />
     <Compile Include="Deque.cs" />
     <Compile Include="DequeOfArray.cs" />
