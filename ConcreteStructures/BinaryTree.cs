@@ -11,7 +11,7 @@ namespace ConcreteStructures
     public class BinaryTree<T> : ICollection<T>
             where T : IComparable<T>
     {
-        private BinaryTreeNode<T> head;  
+        private BinaryTreeNode<T> head;
 
         public IEnumerator<T> GetEnumerator()
         {
@@ -39,13 +39,18 @@ namespace ConcreteStructures
 
         private void AddTo(BinaryTreeNode<T> binaryTreeNode, T item)
         {
+            //We will set the incoming node as the parent node
+            var parent = binaryTreeNode;
             //check if the item to add is less than node's value
             if (item.CompareTo(binaryTreeNode.Value) < 0)
             {
                 //if there is no left child, make this the new left child
                 if (binaryTreeNode.Left == null)
                 {
-                    binaryTreeNode.Left = new BinaryTreeNode<T>(item);
+                    binaryTreeNode.Left = new BinaryTreeNode<T>(item)
+                    {
+                        Parent = parent
+                    };
                 }
                 else
                 {
@@ -58,7 +63,10 @@ namespace ConcreteStructures
             {
                 if (binaryTreeNode.Right == null)
                 {
-                    binaryTreeNode.Right = new BinaryTreeNode<T>(item);
+                    binaryTreeNode.Right = new BinaryTreeNode<T>(item)
+                    {
+                        Parent = parent
+                    };
                 }
                 else
                 {
@@ -75,7 +83,33 @@ namespace ConcreteStructures
 
         public bool Contains(T item)
         {
-            throw new NotImplementedException();
+            if (head == null)
+            {
+                return false;
+            }
+            else
+            {
+               return FindWithParent(head, item);
+            }
+        }
+
+        private bool FindWithParent(BinaryTreeNode<T> binaryTreeNode, T item)
+        {
+            if (binaryTreeNode == null)
+            {
+                return false;
+            }
+
+            if (item.CompareTo(binaryTreeNode.Value) == 0)
+            {
+                return true;
+            }
+            if(item.CompareTo(binaryTreeNode.Value) < 0)
+            {                
+                return FindWithParent(binaryTreeNode.Left, item);
+            }
+
+            return FindWithParent(binaryTreeNode.Right, item);
         }
 
         public void CopyTo(T[] array, int arrayIndex)
@@ -85,7 +119,9 @@ namespace ConcreteStructures
 
         public bool Remove(T item)
         {
-            throw new NotImplementedException();
+            BinaryTreeNode<T> current, parent;
+
+            current = FindWithParent(current, item);
         }
 
         public int Count { get; private set; }
