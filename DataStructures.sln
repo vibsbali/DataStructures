@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp", "ConsoleApp\Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SortingAlgorithms", "SortingAlgorithms\SortingAlgorithms.csproj", "{28701C1A-A6CF-45C0-991A-8618886B3F60}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConcreteStructuresNew", "ConcreteStructuresTwo\ConcreteStructuresNew.csproj", "{01422298-CB70-44F8-82A8-3B5A1BBF2FC3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreNew", "CoreNew\CoreNew.csproj", "{0C033EF3-ADB3-40EF-9B37-D5923BC498E6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{28701C1A-A6CF-45C0-991A-8618886B3F60}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28701C1A-A6CF-45C0-991A-8618886B3F60}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28701C1A-A6CF-45C0-991A-8618886B3F60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01422298-CB70-44F8-82A8-3B5A1BBF2FC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01422298-CB70-44F8-82A8-3B5A1BBF2FC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01422298-CB70-44F8-82A8-3B5A1BBF2FC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01422298-CB70-44F8-82A8-3B5A1BBF2FC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C033EF3-ADB3-40EF-9B37-D5923BC498E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C033EF3-ADB3-40EF-9B37-D5923BC498E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C033EF3-ADB3-40EF-9B37-D5923BC498E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C033EF3-ADB3-40EF-9B37-D5923BC498E6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
