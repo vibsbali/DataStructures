@@ -3,7 +3,7 @@
 namespace SortingAlgorithms
 {
     //Bubble sort is a naive sorting algorithm that operates by making multiple passes through the array,
-    //each time moving the largest unsorted value to the end of the array Time complexity O(n^2) and space complexit O(1)
+    //each time moving the largest unsorted value to the <b>end</b> of the array Time complexity O(n^2) and space complexity O(1)
     public class BubbleSort
     {
         public void Sort<T>(T[] items) where T : IComparable<T>
@@ -21,7 +21,7 @@ namespace SortingAlgorithms
                         swapped = true;
                     }
                 }
-            } while (!swapped);
+            } while (swapped);
         }
     }
 }
