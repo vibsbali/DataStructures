@@ -102,7 +102,15 @@ namespace ConcreteStructures
             }
 
             return setToReturn;
-        }   
+        }
+
+        public DsSet<T> SymmetricDifference(DsSet<T> other)
+        {
+            var union = Union(other);
+            var intersection = Intersection(other);
+
+            return union.Difference(intersection);
+        } 
 
 
     }
