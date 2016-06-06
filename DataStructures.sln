@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{99ACF8AA-9B08-4F8C-A1AC-6FB9EEF6F725}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConcreteStructures", "ConcreteStructures\ConcreteStructures.csproj", "{A65EDB6D-9262-4A98-9601-DD52C6C2ADC0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp", "ConsoleApp\ConsoleApp.csproj", "{D90726DB-50CD-4416-9CBA-ED9C97179917}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SortingAlgorithms", "SortingAlgorithms\SortingAlgorithms.csproj", "{28701C1A-A6CF-45C0-991A-8618886B3F60}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{D90726DB-50CD-4416-9CBA-ED9C97179917}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D90726DB-50CD-4416-9CBA-ED9C97179917}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D90726DB-50CD-4416-9CBA-ED9C97179917}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28701C1A-A6CF-45C0-991A-8618886B3F60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28701C1A-A6CF-45C0-991A-8618886B3F60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28701C1A-A6CF-45C0-991A-8618886B3F60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28701C1A-A6CF-45C0-991A-8618886B3F60}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
