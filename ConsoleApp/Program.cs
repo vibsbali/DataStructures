@@ -1,18 +1,26 @@
 ﻿using System;
-using SortingAlgorithms;
+using CoreNew;
 
 namespace ConsoleApp
 {
     class Program
     {
-        private static void Main(string[] args)
+        private static void Main()
         {
-            var items = new[] {1, 3, 23, 5, 5, 7, 10};
+            var nodeOne = new Node<int>(1);
+            
+            var nodeTwo = new Node<int>(2);
+            nodeOne.Next = nodeTwo;
 
-            var bubbleSort = new BubbleSort();
-            bubbleSort.Sort(items);
+            var nodeThree = new Node<int>(3);
+            nodeTwo.Next = nodeThree;
 
-            Print(items);
+            var nodeToPrint = nodeOne;
+            while (nodeToPrint != null)
+            {
+                Console.WriteLine(nodeToPrint.Value);
+                nodeToPrint = nodeToPrint.Next;
+            }
         }
 
         static void Print<T>(T[] stack)

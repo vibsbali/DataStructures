@@ -50,17 +50,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ConcreteStructures\ConcreteStructures.csproj">
-      <Project>{A65EDB6D-9262-4A98-9601-DD52C6C2ADC0}</Project>
-      <Name>ConcreteStructures</Name>
+    <ProjectReference Include="..\ConcreteStructuresTwo\DataStructures.csproj">
+      <Project>{01422298-cb70-44f8-82a8-3b5a1bbf2fc3}</Project>
+      <Name>DataStructures</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Core\Core.csproj">
-      <Project>{99ACF8AA-9B08-4F8C-A1AC-6FB9EEF6F725}</Project>
-      <Name>Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SortingAlgorithms\SortingAlgorithms.csproj">
-      <Project>{28701C1A-A6CF-45C0-991A-8618886B3F60}</Project>
-      <Name>SortingAlgorithms</Name>
+    <ProjectReference Include="..\CoreNew\CoreNew.csproj">
+      <Project>{0c033ef3-adb3-40ef-9b37-d5923bc498e6}</Project>
+      <Name>CoreNew</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
