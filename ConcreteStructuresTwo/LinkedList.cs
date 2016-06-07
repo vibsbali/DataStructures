@@ -125,7 +125,39 @@ namespace DataStructures
 
         public bool Remove(T item)
         {
-            throw new NotImplementedException();
+            var current = Head;
+            Node<T> previous = null;
+            while (current != null)
+            {
+                if (current.Value.Equals(item))
+                {
+                    if (previous != null)
+                    {
+                        if (current.Next == null) //i.e. it is tail
+                        {
+                            RemoveFromBack();
+                            return true;
+                        }
+
+                        var next = current.Next;
+                        current.Next = null; //explicitly setting next pointer to null though it is not mandatory
+                        previous.Next = next;
+                        Count--;
+                        return true;
+                    }
+                    // ReSharper disable once RedundantIfElseBlock
+                    else // i.e. previous is null which means it is head pointer that we have found and is to be removed
+                    {
+                        RemoveFromFront();
+                        return true;
+                    }
+                }
+                
+                previous = current;
+                current = current.Next;
+            }
+
+            return false;
         }
 
         public int Count { get; set; }
