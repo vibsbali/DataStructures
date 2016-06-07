@@ -7,8 +7,8 @@
     <ProjectGuid>{01422298-CB70-44F8-82A8-3B5A1BBF2FC3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ConcreteStructuresTwo</RootNamespace>
-    <AssemblyName>ConcreteStructuresTwo</AssemblyName>
+    <RootNamespace>DataStructures</RootNamespace>
+    <AssemblyName>DataStructures</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

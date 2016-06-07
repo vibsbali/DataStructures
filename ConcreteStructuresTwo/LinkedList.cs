@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using CoreNew;
 
-namespace ConcreteStructuresTwo
+namespace DataStructures
 {
     public class LinkedList<T> : IEnumerable<T>
         where T : IComparable<T>
