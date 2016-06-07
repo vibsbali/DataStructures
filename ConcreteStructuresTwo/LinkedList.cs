@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using CoreNew;
 
 namespace ConcreteStructuresTwo
@@ -16,7 +17,7 @@ namespace ConcreteStructuresTwo
             if (Head == null)
             {
                 Head = node;
-                Tail = node;
+                Tail = Head;
             }
             else
             {
@@ -43,6 +44,49 @@ namespace ConcreteStructuresTwo
 
             Count++;
         }
+
+        //Complexity O(1)
+        public void RemoveFromFront()
+        {
+            if (Head == null)
+            {
+                throw new InvalidOperationException("Cannot call remove on Empty Linked List");
+            }
+
+            var newHead = Head.Next;
+            Head = newHead;
+            Count--;
+        }
+
+        //Remove from back is not an operation of LinkedList in Production O(N) where N is number of items - 1
+        public void RemoveFromBack()
+        {
+            if (Head == null)
+            {
+                throw new InvalidOperationException("Cannot call remove on Empty Linked List");
+            }
+
+            var secondLastItem = GetNodeAtIndex(Count - 2);
+            secondLastItem.Next = null;
+            Tail = secondLastItem;
+            Count--;
+        }
+
+        public Node<T> GetNodeAtIndex(int index)
+        {
+            if (index > Count)
+            {
+                throw new IndexOutOfRangeException("Maximum index found to be " + Count);
+            }
+
+            var currentNode = Head;
+            for (int i = 0; i < index; i++)
+            {
+                currentNode = currentNode.Next;
+            }
+
+            return currentNode;
+        } 
 
 
         public int Count { get; set; }
