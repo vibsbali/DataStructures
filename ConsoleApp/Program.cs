@@ -1,5 +1,6 @@
 ﻿using System;
 using CoreNew;
+using DataStructures;
 
 namespace ConsoleApp
 {
@@ -10,17 +11,22 @@ namespace ConsoleApp
             var nodeOne = new Node<int>(1);
             
             var nodeTwo = new Node<int>(2);
-            nodeOne.Next = nodeTwo;
+            
 
             var nodeThree = new Node<int>(3);
-            nodeTwo.Next = nodeThree;
+            
 
-            var nodeToPrint = nodeOne;
-            while (nodeToPrint != null)
+            var list = new LinkedList<int>();
+            list.AddToFront(nodeOne);
+            list.AddToBack(nodeTwo);
+            list.AddToBack(nodeThree);
+
+            foreach (var i in list)
             {
-                Console.WriteLine(nodeToPrint.Value);
-                nodeToPrint = nodeToPrint.Next;
+                Console.WriteLine(i);
             }
+
+            
         }
 
         static void Print<T>(T[] stack)
