@@ -42,6 +42,7 @@ namespace DataStructuresTests
 
             Assert.AreEqual(list.Head.Value, 2);
             Assert.AreNotEqual(list.Head.Value, list.Tail.Value);
+            Assert.AreNotEqual(list.Head, list.Tail);
             Assert.IsTrue(list.Count == 2);
         }
 
@@ -56,6 +57,95 @@ namespace DataStructuresTests
             Assert.AreEqual(list.Head, nodeTwo);
             Assert.IsTrue(list.Count == 2);
         }
+
+        [TestMethod]
+        public void CreateAListWithTwoNodeAndInsertNewNodeToEndAssertTailIsEqualToNewNode()
+        {
+            list.AddToFront(nodeOne);
+            list.AddToBack(nodeTwo);
+
+            Assert.AreEqual(list.Head.Value, 1);
+            Assert.AreEqual(list.Tail, nodeTwo);
+            Assert.AreEqual(list.Tail.Value, 2);
+            Assert.IsTrue(list.Count == 2);
+        }
+
+
+        [TestMethod]
+        public void CreateAListWithTwoNodeAndRemoveANodeFromFrontAssertHeadEqualTail()
+        {
+            list.AddToFront(nodeOne);
+            list.AddToBack(nodeTwo);
+
+            Assert.AreEqual(list.Head.Value, 1);
+            Assert.AreEqual(list.Tail, nodeTwo);
+            Assert.AreEqual(list.Tail.Value, 2);
+            Assert.IsTrue(list.Count == 2);
+
+            list.RemoveFromFront();
+            Assert.AreEqual(list.Head.Value, 2);
+            Assert.AreEqual(list.Head, list.Tail);
+            Assert.AreEqual(list.Tail.Value, 2);
+            Assert.IsTrue(list.Count == 1);
+        }
+
+        [TestMethod]
+        public void CreateAListWithFourNodeAndRemoveANodeFromFrontAssertHeadNotEqualTail()
+        {
+            list.AddToFront(nodeOne);
+            list.AddToBack(nodeTwo);
+            list.AddToBack(nodeThree);
+            list.AddToBack(nodeFour);
+
+            Assert.AreEqual(list.Head.Value, 1);
+            Assert.AreEqual(list.Tail.Value, 4);
+            Assert.IsTrue(list.Count == 4);
+
+            list.RemoveFromFront();
+            Assert.AreEqual(list.Head.Value, 2);
+            Assert.AreNotEqual(list.Head, list.Tail);
+            Assert.AreEqual(list.Tail.Value, 4);
+            Assert.IsTrue(list.Count == 3);
+        }
+
+        [TestMethod]
+        public void CreateAListWithTwoNodeAndRemoveANodeFromBackAssertHeadEqualTail()
+        {
+            list.AddToFront(nodeOne);
+            list.AddToBack(nodeTwo);
+
+            Assert.AreEqual(list.Head.Value, 1);
+            Assert.AreEqual(list.Tail, nodeTwo);
+            Assert.AreEqual(list.Tail.Value, 2);
+            Assert.IsTrue(list.Count == 2);
+
+            list.RemoveFromBack();
+            Assert.AreEqual(list.Head.Value, 1);
+            Assert.AreEqual(list.Head, list.Tail);
+            Assert.AreEqual(list.Tail.Value, 1);
+            Assert.IsTrue(list.Count == 1);
+        }
+
+        [TestMethod]
+        public void CreateAListWithFourNodeAndRemoveANodeFromBackAssertHeadNotEqualTail()
+        {
+            list.AddToFront(nodeOne);
+            list.AddToBack(nodeTwo);
+            list.AddToBack(nodeThree);
+            list.AddToBack(nodeFour);
+
+            Assert.AreEqual(list.Head.Value, 1);
+            Assert.AreEqual(list.Tail.Value, 4);
+            Assert.IsTrue(list.Count == 4);
+
+            list.RemoveFromBack();
+            Assert.AreEqual(list.Head.Value, 1);
+            Assert.AreNotEqual(list.Head, list.Tail);
+            Assert.AreEqual(list.Tail.Value, 3);
+            Assert.IsTrue(list.Count == 3);
+        }
+
+
 
 
         [TestCleanup]
