@@ -5,7 +5,7 @@ using CoreNew;
 
 namespace DataStructures
 {
-    public class LinkedList<T> : IEnumerable<T>
+    public class LinkedList<T> : ICollection<T>
         where T : IComparable<T>
     {
         public Node<T> Head { get; set; }
@@ -53,6 +53,7 @@ namespace DataStructures
             }
 
             var newHead = Head.Next;
+            Head = null;    //Intentionally pointing Head to null 
             Head = newHead;
             Count--;
         }
@@ -88,10 +89,47 @@ namespace DataStructures
             }
 
             return currentNode;
-        } 
+        }
 
+
+        public void Add(T item)
+        {
+            AddToBack(new Node<T>(item));
+        }
+
+        public void Clear()
+        {
+            Head = Tail = null;
+            Count = 0;
+        }
+
+        public bool Contains(T item)
+        {
+            var current = Head;
+            while (current != null)
+            {
+                if (current.Value.Equals(item))
+                {
+                    return true;
+                }
+                current = current.Next;
+            }
+
+            return false;
+        }
+
+        public void CopyTo(T[] array, int arrayIndex)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Remove(T item)
+        {
+            throw new NotImplementedException();
+        }
 
         public int Count { get; set; }
+        public bool IsReadOnly => false;
 
         public IEnumerator<T> GetEnumerator()
         {

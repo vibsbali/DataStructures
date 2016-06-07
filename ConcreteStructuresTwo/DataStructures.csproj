@@ -46,7 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CoreNew\CoreNew.csproj">
-      <Project>{0C033EF3-ADB3-40EF-9B37-D5923BC498E6}</Project>
+      <Project>{0c033ef3-adb3-40ef-9b37-d5923bc498e6}</Project>
       <Name>CoreNew</Name>
     </ProjectReference>
   </ItemGroup>
