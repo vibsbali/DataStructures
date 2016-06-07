@@ -8,25 +8,18 @@ namespace ConsoleApp
     {
         private static void Main()
         {
-            var nodeOne = new Node<int>(1);
+            var list = new DoublyLinkedList<int>();
+            list.Add(1);
+            list.Add(2);
             
-            var nodeTwo = new Node<int>(2);
-            
-
-            var nodeThree = new Node<int>(3);
-            
-
-            var list = new LinkedList<int>();
-            list.AddToFront(nodeOne);
-            list.AddToBack(nodeTwo);
-            list.AddToBack(nodeThree);
-
             foreach (var i in list)
             {
                 Console.WriteLine(i);
             }
 
+
             list.RemoveFromBack();
+            list.RemoveFromFront();
 
             var current = list.Head;
             while (current != null)
