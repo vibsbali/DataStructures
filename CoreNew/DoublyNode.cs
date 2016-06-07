@@ -2,7 +2,7 @@
 
 namespace CoreNew
 {
-    class DoublyNode<T>
+    public class DoublyNode<T>
     {
         private DoublyNode<T> next;
         private DoublyNode<T> previous;

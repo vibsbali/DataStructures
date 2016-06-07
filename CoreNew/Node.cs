@@ -2,7 +2,7 @@
 
 namespace CoreNew
 {
-    public class Node<T> where T: IComparable<T>
+    public class Node<T>
     {
         private Node<T> next;    
         public T Value { get; private set; }
