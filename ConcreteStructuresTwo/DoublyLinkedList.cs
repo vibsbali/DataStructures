@@ -22,6 +22,7 @@ namespace ConcreteStructuresTwo
                 var temp = Head;
                 Head = node;
                 Head.Next = temp;
+                temp.Previous = Head;
             }
 
             Count++;
@@ -37,6 +38,7 @@ namespace ConcreteStructuresTwo
             else
             {
                 Tail.Next = node;
+                node.Previous = Tail;
                 Tail = node;
             }
 
@@ -52,11 +54,13 @@ namespace ConcreteStructuresTwo
             }
 
             var newHead = Head.Next;
+            newHead.Previous = null;
+            Head = null;                //When nulling the object all the related references will be nulled too
             Head = newHead;
             Count--;
         }
 
-        //Remove from back is not an operation of LinkedList in Production O(N) where N is number of items - 1
+        //Remove from back is not an operation of LinkedList in Production O(1) 
         public void RemoveFromBack()
         {
             if (Head == null)
@@ -64,12 +68,8 @@ namespace ConcreteStructuresTwo
                 throw new InvalidOperationException("Cannot call remove on Empty Linked List");
             }
 
-            //There is an alternative to this which is to move till Tail pointer like so
-            //DoublyNode<T> current = head;
-            //while(current.Next != Tail) { current = current.Next; }
-            var secondLastItem = GetDoublyNodeAtIndex(Count - 2);
-            secondLastItem.Next = null;
-            Tail = secondLastItem;
+            Tail = Tail.Previous;
+            Tail.Next = null;
             Count--;
         }
 
