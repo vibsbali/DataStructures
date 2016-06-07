@@ -95,7 +95,7 @@ namespace DataStructures
         public IEnumerator<T> GetEnumerator()
         {
             var current = Head;
-            while (current != Tail)
+            while (current != null)
             {
                 yield return current.Value;
                 current = current.Next;
