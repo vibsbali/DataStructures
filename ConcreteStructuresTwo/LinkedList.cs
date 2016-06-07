@@ -120,7 +120,7 @@ namespace DataStructures
 
         public void CopyTo(T[] array, int arrayIndex)
         {
-            throw new NotImplementedException();
+            
         }
 
         public bool Remove(T item)
