@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using CoreNew;
 
 namespace ConcreteStructuresTwo
@@ -66,6 +65,9 @@ namespace ConcreteStructuresTwo
                 throw new InvalidOperationException("Cannot call remove on Empty Linked List");
             }
 
+            //There is an alternative to this which is to move till Tail pointer like so
+            //Node<T> current = head;
+            //while(current.Next != Tail) { current = current.Next; }
             var secondLastItem = GetNodeAtIndex(Count - 2);
             secondLastItem.Next = null;
             Tail = secondLastItem;
@@ -93,7 +95,12 @@ namespace ConcreteStructuresTwo
 
         public IEnumerator<T> GetEnumerator()
         {
-            throw new System.NotImplementedException();
+            var current = Head;
+            while (current != Tail)
+            {
+                yield return current.Value;
+                current = current.Next;
+            }
         }
 
         IEnumerator IEnumerable.GetEnumerator()
