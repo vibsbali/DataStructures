@@ -26,6 +26,14 @@ namespace ConsoleApp
                 Console.WriteLine(i);
             }
 
+            list.RemoveFromBack();
+
+            var current = list.Head;
+            while (current != null)
+            {
+                Console.WriteLine(current.Value);
+                current = current.Next;
+            }
             
         }
 
