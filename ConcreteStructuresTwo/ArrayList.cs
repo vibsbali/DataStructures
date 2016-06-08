@@ -7,7 +7,8 @@ namespace DataStructures
     public class ArrayList<T> : IList<T>
     {
         private T[] backingArray;
-        private const int InitialSize = 4;
+        //Min length is sixteen
+        private const int InitialSize = 16;
 
         public ArrayList(int length)
         {
@@ -18,8 +19,7 @@ namespace DataStructures
 
             backingArray = new T[length];
         }
-
-        //Min length is four
+        
         public ArrayList() : this(InitialSize)
         {
         }
