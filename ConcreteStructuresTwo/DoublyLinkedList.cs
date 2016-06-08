@@ -5,7 +5,7 @@ using CoreNew;
 
 namespace DataStructures
 {
-    public class DoublyLinkedList<T> : IEnumerable<T>
+    public class DoublyLinkedList<T> : ICollection<T>
     {
         public DoublyNode<T> Head { get; set; }
         public DoublyNode<T> Tail { get; set; }
@@ -53,6 +53,11 @@ namespace DataStructures
                 throw new InvalidOperationException("Cannot call remove on Empty Linked List");
             }
 
+            if (Head == Tail)
+            {
+                Clear();
+                return;
+            }
             var newHead = Head.Next;
             newHead.Previous = null;
             Head = null;                //When nulling the object all the related references will be nulled too
@@ -68,6 +73,12 @@ namespace DataStructures
                 throw new InvalidOperationException("Cannot call remove on Empty Linked List");
             }
 
+            //i.e. there only one element
+            if (Head == Tail)
+            {
+                Clear();
+                return;
+            }
             Tail = Tail.Previous;
             Tail.Next = null;
             Count--;
@@ -90,7 +101,69 @@ namespace DataStructures
         }
 
 
+        public void Add(T item)
+        {
+            AddToBack(new DoublyNode<T>(item));
+        }
+
+        public void Clear()
+        {
+            Head = Tail = null;
+            Count = 0;
+        }
+
+        public bool Contains(T item)
+        {
+            if (FindAndRetrieve(item) == null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public void CopyTo(T[] array, int arrayIndex)
+        {
+            var current = Head;
+            while (current.Next != null)
+            {
+                array[arrayIndex] = current.Value;
+                arrayIndex = arrayIndex + 1;
+                current = current.Next;
+            }
+        }
+
+        public bool Remove(T item)
+        {
+            var foundItem = FindAndRetrieve(item);
+
+            if (foundItem != null)
+            {
+                if (foundItem == Head)
+                {
+                    RemoveFromFront();
+                }
+                else if (foundItem == Tail)
+                {
+                    RemoveFromBack();
+                }
+                else
+                {
+                    var previousNode = foundItem.Previous;
+                    var nextNode = foundItem.Next;
+
+                    previousNode.Next = nextNode;
+                    nextNode.Previous = previousNode;
+                }
+
+                return true;
+            }
+
+            return false;
+        }
+
         public int Count { get; set; }
+        public bool IsReadOnly => false;
 
         public IEnumerator<T> GetEnumerator()
         {
@@ -106,5 +179,20 @@ namespace DataStructures
         {
             return GetEnumerator();
         }
+
+        private DoublyNode<T> FindAndRetrieve(T item)
+        {
+            var current = Head;
+            while (current != null)
+            {
+                if (item.Equals(current.Value))
+                {
+                    return current;
+                }
+                current = current.Next;
+            }
+
+            return null;
+        } 
     }
 }
