@@ -1,6 +1,5 @@
 ﻿using System;
-using CoreNew;
-using DataStructures;
+using System.Collections;
 
 namespace ConsoleApp
 {
@@ -8,8 +7,8 @@ namespace ConsoleApp
     {
         private static void Main()
         {
-            
-            
+            var list = new ArrayList();
+            list.RemoveAt(0);
         }
 
         static void Print<T>(T[] stack)

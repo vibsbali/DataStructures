@@ -7,6 +7,7 @@ namespace DataStructures
     public class ArrayList<T> : IList<T>
     {
         private T[] backingArray;
+        private const int InitialSize = 4;
 
         public ArrayList(int length)
         {
@@ -19,14 +20,17 @@ namespace DataStructures
         }
 
         //Min length is four
-        public ArrayList() : this(4)
+        public ArrayList() : this(InitialSize)
         {
         }
 
 
         public IEnumerator<T> GetEnumerator()
         {
-            throw new NotImplementedException();
+            for (var i = 0; i < Count; i++)
+            {
+                yield return backingArray[i];
+            }
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -38,22 +42,38 @@ namespace DataStructures
         {
             if (backingArray.Length == Count)
             {
-                var temp = new T[backingArray.Length * 2];
-                backingArray.CopyTo(temp, 0);
-                backingArray = temp;
+                GrowArray();
             }
             backingArray[Count] = item;
             ++Count;
         }
 
+        //This is a private method that grows backing array
+        private void GrowArray()
+        {
+            var temp = new T[backingArray.Length * 2];
+            backingArray.CopyTo(temp, 0);
+            backingArray = temp;
+        }
+
         public void Clear()
         {
-            throw new NotImplementedException();
+            backingArray = new T[InitialSize];
+            Count = 0;
         }
 
         public bool Contains(T item)
         {
-            throw new NotImplementedException();
+            for (var i = 0; i < backingArray.Length; i++)
+            {
+                var value = backingArray[i];
+                if (value.Equals(item))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         public void CopyTo(T[] array, int arrayIndex)
@@ -63,7 +83,14 @@ namespace DataStructures
 
         public bool Remove(T item)
         {
-            throw new NotImplementedException();
+            var indexOfItem = IndexOf(item);
+            if (indexOfItem >= 0)
+            {
+                RemoveAt(indexOfItem);
+                return true;
+            }
+
+            return false;
         }
 
         public int Count { get; private set; }
@@ -72,7 +99,14 @@ namespace DataStructures
 
         public int IndexOf(T item)
         {
-            throw new NotImplementedException();
+            for (var i = 0; i < Count; i++)
+            {
+                if (backingArray[i].Equals(item))
+                {
+                    return i;
+                }
+            }
+            return -1;
         }
 
         public void Insert(int index, T item)
@@ -82,7 +116,12 @@ namespace DataStructures
 
         public void RemoveAt(int index)
         {
-            throw new NotImplementedException();
+            if (index < 0 || index > Count - 1)
+            {
+                throw new IndexOutOfRangeException();
+            }
+            Array.Copy(backingArray, index + 1, backingArray, index, Count - index);
+            Count--;
         }
 
         public T this[int index]
