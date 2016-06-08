@@ -6,7 +6,6 @@ using CoreNew;
 namespace DataStructures
 {
     public class LinkedList<T> : ICollection<T>
-        where T : IComparable<T>
     {
         public Node<T> Head { get; set; }
         public Node<T> Tail { get; set; }
