@@ -120,7 +120,13 @@ namespace DataStructures
 
         public void CopyTo(T[] array, int arrayIndex)
         {
-            
+            var current = Head;
+            while (current != null)
+            {
+                array[arrayIndex] = current.Value;
+                ++arrayIndex;
+                current = current.Next;
+            }
         }
 
         public bool Remove(T item)
