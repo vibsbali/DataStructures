@@ -124,7 +124,13 @@ namespace DataStructures
 
         public void CopyTo(T[] array, int arrayIndex)
         {
-            throw new NotImplementedException();
+            var current = Head;
+            while (current.Next != null)
+            {
+                array[arrayIndex] = current.Value;
+                arrayIndex = arrayIndex + 1;
+                current = current.Next;
+            }
         }
 
         public bool Remove(T item)
@@ -148,7 +154,6 @@ namespace DataStructures
 
                     previousNode.Next = nextNode;
                     nextNode.Previous = previousNode;
-                    foundItem = null;   //Safe side to mark foundItem to null
                 }
 
                 return true;
