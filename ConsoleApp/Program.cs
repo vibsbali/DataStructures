@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections;
+using DataStructures;
 
 namespace ConsoleApp
 {
@@ -7,8 +7,28 @@ namespace ConsoleApp
     {
         private static void Main()
         {
-            var list = new ArrayList();
-            list.RemoveAt(0);
+            var list = new DataStructures.ArrayList<int>();
+
+            for (int i = 0; i < 2; i++)
+            {
+                list.Add(i);
+            }
+
+
+            for (int i = 0; i < list.Count; i++)
+            {
+                Console.WriteLine(list[i]);
+            }
+
+
+            list.Insert(1, 2);
+
+            
+
+            for (int i = 0; i < list.Count; i++)
+            {
+                Console.WriteLine(list[i]);
+            }
         }
 
         static void Print<T>(T[] stack)

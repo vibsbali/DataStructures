@@ -64,16 +64,7 @@ namespace DataStructures
 
         public bool Contains(T item)
         {
-            for (var i = 0; i < backingArray.Length; i++)
-            {
-                var value = backingArray[i];
-                if (value.Equals(item))
-                {
-                    return true;
-                }
-            }
-
-            return false;
+            return IndexOf(item) != -1;
         }
 
         public void CopyTo(T[] array, int arrayIndex)
@@ -111,7 +102,20 @@ namespace DataStructures
 
         public void Insert(int index, T item)
         {
-            throw new NotImplementedException();
+            if (index >= Count)
+            {
+                throw new InvalidOperationException("index passed greater than count");
+            }
+
+            //check whether insertion is possible in the existing backing array
+            if (backingArray.Length + 1 >= Count)
+            {
+                GrowArray();
+            }
+            Array.Copy(backingArray, index, backingArray, index + 1, Count - index);
+            backingArray[index] = item;
+
+            Count++;
         }
 
         public void RemoveAt(int index)
@@ -126,8 +130,18 @@ namespace DataStructures
 
         public T this[int index]
         {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
+            get { return backingArray[index]; }
+
+            set {
+                if (index < Count)
+                {
+                    backingArray[index] = value;
+                }
+                else
+                {
+                    throw new IndexOutOfRangeException();
+                }
+            }
         }
     }
 }
