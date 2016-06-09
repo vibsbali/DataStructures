@@ -5,13 +5,10 @@ namespace DataStructures
     public class Stack<T>
     {
         readonly System.Collections.Generic.LinkedList<T> items = new System.Collections.Generic.LinkedList<T>();
-
-        public int Count { get; private set; }
-
+        
         public void Push(T item)
         {
             items.AddLast(item);
-            Count++;
         }
 
         public T Pop()
@@ -23,8 +20,6 @@ namespace DataStructures
 
             var item = items.Last;
             items.RemoveLast();
-            Count--;
-
             return item.Value;
         }
 
