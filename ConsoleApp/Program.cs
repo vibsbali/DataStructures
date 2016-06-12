@@ -7,20 +7,24 @@ namespace ConsoleApp
     {
         private static void Main()
         {
-            var myDequeue = new DequeueArray<int>();
+            var myDequeue = new QueueArray<int>();
 
-            myDequeue.EnqueueFirst(10);
-            myDequeue.EnqueueFirst(20);
-            myDequeue.EnqueueFirst(10);
-            myDequeue.EnqueueFirst(20);
-            myDequeue.EnqueueFirst(10);
-            myDequeue.EnqueueFirst(20);
-            myDequeue.EnqueueFirst(10);
-            myDequeue.EnqueueFirst(20);
+            for (int i = 0; i < 4; i++)
+            {
+                myDequeue.Enqueue(i);
+            }
 
-            Console.WriteLine(myDequeue.DequeFirst());
-            Console.WriteLine(myDequeue.DequeLast());
+            Console.WriteLine(myDequeue.Deque());
 
+            for (int i = 4; i < 9; i++)
+            {
+                myDequeue.Enqueue(i);
+            }
+
+            for (int i = 9; i < 16; i++)
+            {
+                myDequeue.Enqueue(i);
+            }
         }
     }
 }
