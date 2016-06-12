@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using DataStructures;
 
 namespace ConsoleApp
@@ -7,24 +8,14 @@ namespace ConsoleApp
     {
         private static void Main()
         {
-            var myDequeue = new QueueArray<int>();
+            var myTree = new Tree<int>();
 
-            for (int i = 0; i < 4; i++)
-            {
-                myDequeue.Enqueue(i);
-            }
-
-            Console.WriteLine(myDequeue.Deque());
-
-            for (int i = 4; i < 9; i++)
-            {
-                myDequeue.Enqueue(i);
-            }
-
-            for (int i = 9; i < 16; i++)
-            {
-                myDequeue.Enqueue(i);
-            }
+            myTree.Add(1);
+            myTree.Add(2);
+            myTree.Add(3);
+            myTree.Add(10);
+            myTree.Add(8);
+            myTree.Add(7);
         }
     }
 }

@@ -50,6 +50,7 @@
     <Compile Include="QueueArray.cs" />
     <Compile Include="Stack.cs" />
     <Compile Include="StackArray.cs" />
+    <Compile Include="Tree.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CoreNew\CoreNew.csproj">
