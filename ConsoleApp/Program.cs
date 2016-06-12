@@ -1,4 +1,5 @@
-﻿using DataStructures;
+﻿using System;
+using DataStructures;
 
 namespace ConsoleApp
 {
@@ -6,9 +7,19 @@ namespace ConsoleApp
     {
         private static void Main()
         {
-           var myArrayList = new ArrayList<int>();
-            myArrayList.Add(3);
-            myArrayList.Add(3);
+            var myDequeue = new DequeueArray<int>();
+
+            myDequeue.EnqueueFirst(10);
+            myDequeue.EnqueueFirst(20);
+            myDequeue.EnqueueFirst(10);
+            myDequeue.EnqueueFirst(20);
+            myDequeue.EnqueueFirst(10);
+            myDequeue.EnqueueFirst(20);
+            myDequeue.EnqueueFirst(10);
+            myDequeue.EnqueueFirst(20);
+
+            Console.WriteLine(myDequeue.DequeFirst());
+            Console.WriteLine(myDequeue.DequeLast());
 
         }
     }
