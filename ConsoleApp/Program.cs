@@ -16,6 +16,9 @@ namespace ConsoleApp
             myTree.Add(10);
             myTree.Add(8);
             myTree.Add(7);
+
+            Console.WriteLine(myTree.Contains(4));
+            Console.WriteLine(myTree.Contains(7));
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 
 
 namespace DataStructures
@@ -47,7 +48,27 @@ namespace DataStructures
 
         public bool Contains(T item)
         {
-            throw new NotImplementedException();
+            return Find(Root, item);
+        }
+
+        private bool Find(BinaryTreeNode<T> node, T item)
+        {
+            if (node == null)
+            {
+                return false;
+            }
+
+            if (node.Value.CompareTo(item) == -1)
+            {
+                return Find(node.Right, item);
+            }
+            if (node.Value.CompareTo(item) == 1)
+            {
+                return Find(node.Left, item);
+            }
+
+            //If come this far we have found a match
+            return true;
         }
 
         public void CopyTo(T[] array, int arrayIndex)
