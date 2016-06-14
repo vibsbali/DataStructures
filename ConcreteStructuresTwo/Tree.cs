@@ -82,16 +82,16 @@ namespace DataStructures
                 if (current.Value.CompareTo(item) < 0)
                 {
                     parentNode = current;
-                    current = current.Left;
-                }
-                if (current.Value.CompareTo(item) > 0)
-                {
-                    parentNode = current;
                     current = current.Right;
                 }
-                if (current.Value.CompareTo(item) == 0)
+                else if (current.Value.CompareTo(item) > 0)
                 {
-                    break;
+                    parentNode = current;
+                    current = current.Left;
+                }
+                else if (current.Value.CompareTo(item) == 0)
+                {
+                    return true;
                 }
             }
 
@@ -105,7 +105,10 @@ namespace DataStructures
 
         public bool Remove(T item)
         {
-            throw new NotImplementedException();
+            BinaryTreeNode<T> parent;
+            var result = FindWithParent(Root, item, out parent);
+
+            return result;
         }
 
         private void Insert(BinaryTreeNode<T> node, T item)

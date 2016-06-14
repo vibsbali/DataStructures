@@ -19,6 +19,9 @@ namespace ConsoleApp
 
             Console.WriteLine(myTree.Contains(4));
             Console.WriteLine(myTree.Contains(7));
+
+            Console.WriteLine(myTree.Remove(4));
+            Console.WriteLine(myTree.Remove(7));
         }
     }
 }
