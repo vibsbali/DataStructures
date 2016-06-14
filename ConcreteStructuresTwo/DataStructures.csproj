@@ -48,6 +48,7 @@
     <Compile Include="Queue.cs" />
     <Compile Include="DequeueArray.cs" />
     <Compile Include="QueueArray.cs" />
+    <Compile Include="Set.cs" />
     <Compile Include="Stack.cs" />
     <Compile Include="StackArray.cs" />
     <Compile Include="Tree.cs" />
