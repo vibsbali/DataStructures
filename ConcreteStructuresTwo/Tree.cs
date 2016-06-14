@@ -231,6 +231,54 @@ namespace DataStructures
             }
         }
 
+        public void PreOrderTraversal(Action<T> action)
+        {
+            PreOrderTraversal(action, Root);
+
+        }
+
+        private void PreOrderTraversal(Action<T> action, BinaryTreeNode<T> node)
+        {
+            if (node != null)
+            {
+                action(node.Value);
+                PostOrderTraversal(action, node.Left);
+                PostOrderTraversal(action, node.Right);
+            }
+        }
+        
+
+        public void PostOrderTraversal(Action<T> action)
+        {
+            PostOrderTraversal(action, Root);
+        }
+
+        private void PostOrderTraversal(Action<T> action, BinaryTreeNode<T> node)
+        {
+            if (node != null)
+            {
+                PostOrderTraversal(action, node.Left);
+                PostOrderTraversal(action, node.Right);
+                action(node.Value);
+            }
+        }
+
+        public void InOrderTraversal(Action<T> action)
+        {
+            InOrderTraversal(action, Root);
+        }
+
+        private void InOrderTraversal(Action<T> action, BinaryTreeNode<T> node)
+        {
+            if (node != null)
+            {
+                InOrderTraversal(action, node.Left);
+                action(node.Value);
+                InOrderTraversal(action, node.Right);
+            }
+        }
+
+
         private BinaryTreeNode<T> FindLeftMostNode(BinaryTreeNode<T> node)
         {
             var previous = node;
