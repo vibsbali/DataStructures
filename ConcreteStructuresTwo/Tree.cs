@@ -137,27 +137,42 @@ namespace DataStructures
                     //If parent is larger then it means it is left
                     if (parent.Value.CompareTo(result.Value) > 0)
                     {
-                        var existingLeftOfNodeToRemove = result.Left;
+                        var nodeToRemove = result;
                         parent.Left = null;
                         parent.Left = result.Right;
-                        result.Left = existingLeftOfNodeToRemove;
+                        parent.Left.Left = nodeToRemove.Left;
                     }
                     else
                     {
-                        var existingLeftOfNodeToRemove = result.Left;
+                        var nodeToRemove = result;
                         parent.Right = null;
                         parent.Right = result.Right;
-                        result.Left = existingLeftOfNodeToRemove;
+                        parent.Right.Left = nodeToRemove.Left;
                     }
                 }
                 //The node to be removed has a right child which, in turn, has a left child.
                 //In this case, the left-most child of the removed node’s right child must be placed into the removed node’s slot
                 else if (result.Right.Left != null)
                 {
-                    
+                    //Check if it is right or left 
+                    //If parent is larger then it means it is left
+                    if (parent.Value.CompareTo(result.Value) > 0)
+                    {
+                        var nodeToRemove = result;
+                        parent.Left = null;
+                        parent.Left = FindLeftMostNode(result.Right);
+                        parent.Left.Left = nodeToRemove.Left;
+                        parent.Left.Right = nodeToRemove.Right;
+                    }
+                    else
+                    {
+                        var nodeToRemove = result;
+                        parent.Right = null;
+                        parent.Right = FindLeftMostNode(result.Right);
+                        parent.Right.Left = nodeToRemove.Left;
+                        parent.Right.Right = nodeToRemove.Right;
+                    }
                 }
-
-
                 Count--;
                 return true;
             }
@@ -165,10 +180,71 @@ namespace DataStructures
             return false;
         }
 
+
+
+        private IEnumerator<T> InOrderTraversal()
+        {
+            // This is a non-recursive algorithm using a stack to demonstrate removing // recursion. 
+            if (Root != null)
+            {
+                // Store the nodes we've skipped in this stack (avoids recursion). 
+                System.Collections.Generic.Stack<BinaryTreeNode<T>> stack = new System.Collections.Generic.Stack<BinaryTreeNode<T>>();
+                BinaryTreeNode<T> current = Root;
+
+                // When removing recursion, we need to keep track of whether we should be going to the left node or the right nodes next. 
+                bool goLeftNext = true;
+
+                // Start by pushing Head onto the stack. 
+                stack.Push(current);
+
+                while (stack.Count > 0)
+                {
+                    // If we're heading left... 
+                    if (goLeftNext)
+                    {
+                        // Push everything but the left-most node to the stack. We'll yield the left-most after this block. 
+                        while (current.Left != null)
+                        {
+                            stack.Push(current);
+                            current = current.Left;
+                        }
+                    }
+                    // Inorder is left->yield->right. 
+
+                    yield return current.Value;
+
+                    // If we can go right, do so. 
+                    if (current.Right != null)
+                    {
+                        current = current.Right;
+
+                        // Once we've gone right once, we need to start going left again. 
+                        goLeftNext = true;
+                    }
+                    else
+                    {
+                        // If we can't go right, then we need to pop off the parent node so we can process it and then go to its right node. 
+                        current = stack.Pop();
+                        goLeftNext = false;
+                    }
+                }
+            }
+        }
+
+        private BinaryTreeNode<T> FindLeftMostNode(BinaryTreeNode<T> node)
+        {
+            var previous = node;
+            while (node != null)
+            {
+                previous = node;
+                node = node.Left;
+            }
+            return previous;
+        }
+
         private void Insert(BinaryTreeNode<T> node, T item)
         {
             //If LHS < RHS
-            Console.WriteLine(node.Value.CompareTo(item));
             if (node.Value.CompareTo(item) > -1)
             {
                 if (node.Left != null)
@@ -178,7 +254,6 @@ namespace DataStructures
                 else
                 {
                     node.Left = new BinaryTreeNode<T>(item);
-                    Count++;
                 }
             }
             else
@@ -190,7 +265,6 @@ namespace DataStructures
                 else
                 {
                     node.Right = new BinaryTreeNode<T>(item);
-                    Count++;
                 }
             }
         }
@@ -200,7 +274,7 @@ namespace DataStructures
 
         public IEnumerator<T> GetEnumerator()
         {
-            throw new NotImplementedException();
+            return InOrderTraversal();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
