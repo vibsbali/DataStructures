@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 
 
 namespace DataStructures
 {
-    internal class BinaryTreeNode<T> 
+    internal class BinaryTreeNode<T>
         where T : IComparable<T>
     {
         public BinaryTreeNode<T> Left { get; set; }
@@ -51,6 +50,7 @@ namespace DataStructures
             return Find(Root, item);
         }
 
+        //Also look at FindWithParent which shows how a recursive call can be changed to while loop
         private bool Find(BinaryTreeNode<T> node, T item)
         {
             if (node == null)
@@ -69,6 +69,33 @@ namespace DataStructures
 
             //If come this far we have found a match
             return true;
+        }
+
+
+        private bool FindWithParent(BinaryTreeNode<T> node, T item, out BinaryTreeNode<T> parentNode)
+        {
+            var current = node;
+            parentNode = null;
+
+            while (current != null)
+            {
+                if (current.Value.CompareTo(item) < 0)
+                {
+                    parentNode = current;
+                    current = current.Left;
+                }
+                if (current.Value.CompareTo(item) > 0)
+                {
+                    parentNode = current;
+                    current = current.Right;
+                }
+                if (current.Value.CompareTo(item) == 0)
+                {
+                    break;
+                }
+            }
+
+            return false;
         }
 
         public void CopyTo(T[] array, int arrayIndex)
