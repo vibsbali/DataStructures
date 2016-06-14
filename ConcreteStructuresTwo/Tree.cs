@@ -72,7 +72,7 @@ namespace DataStructures
         }
 
 
-        private bool FindWithParent(BinaryTreeNode<T> node, T item, out BinaryTreeNode<T> parentNode)
+        private BinaryTreeNode<T> FindWithParent(BinaryTreeNode<T> node, T item, out BinaryTreeNode<T> parentNode)
         {
             var current = node;
             parentNode = null;
@@ -91,11 +91,11 @@ namespace DataStructures
                 }
                 else if (current.Value.CompareTo(item) == 0)
                 {
-                    return true;
+                    return current;
                 }
             }
 
-            return false;
+            return null;
         }
 
         public void CopyTo(T[] array, int arrayIndex)
@@ -108,7 +108,61 @@ namespace DataStructures
             BinaryTreeNode<T> parent;
             var result = FindWithParent(Root, item, out parent);
 
-            return result;
+            if (result != null)
+            {
+                //Is it a tail node
+                if (result.Left == null && result.Right == null)
+                {
+                    parent.Left = null;
+                    parent.Right = null;
+                }
+                //If Node to remove has no Right child
+                if (result.Right == null)
+                {
+                    //Check if it is right or left 
+                    //If parent is larger then it means it is left
+                    if (parent.Value.CompareTo(result.Value) > 0)
+                    {
+                        parent.Left = result.Left;
+                    }
+                    else
+                    {
+                        parent.Right = result.Left;
+                    }
+                }
+                //If Node to remove has a right child has no left child
+                else if (result.Right.Left == null)
+                {
+                    //Check if it is right or left 
+                    //If parent is larger then it means it is left
+                    if (parent.Value.CompareTo(result.Value) > 0)
+                    {
+                        var existingLeftOfNodeToRemove = result.Left;
+                        parent.Left = null;
+                        parent.Left = result.Right;
+                        result.Left = existingLeftOfNodeToRemove;
+                    }
+                    else
+                    {
+                        var existingLeftOfNodeToRemove = result.Left;
+                        parent.Right = null;
+                        parent.Right = result.Right;
+                        result.Left = existingLeftOfNodeToRemove;
+                    }
+                }
+                //The node to be removed has a right child which, in turn, has a left child.
+                //In this case, the left-most child of the removed node’s right child must be placed into the removed node’s slot
+                else if (result.Right.Left != null)
+                {
+                    
+                }
+
+
+                Count--;
+                return true;
+            }
+
+            return false;
         }
 
         private void Insert(BinaryTreeNode<T> node, T item)
