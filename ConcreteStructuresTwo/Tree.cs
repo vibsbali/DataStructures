@@ -293,7 +293,8 @@ namespace DataStructures
         private void Insert(BinaryTreeNode<T> node, T item)
         {
             //If LHS < RHS
-            if (node.Value.CompareTo(item) > -1)
+            Console.WriteLine(node.Value.CompareTo(item));
+            if (node.Value.CompareTo(item) == 1)
             {
                 if (node.Left != null)
                 {
