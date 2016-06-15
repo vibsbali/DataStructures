@@ -8,23 +8,16 @@ namespace ConsoleApp
     {
         private static void Main()
         {
-            var myTree = new Tree<int>();
+            var myArray = new[] {1, 2, 3, 4, 5, 6, 7};
+            
+            var bubbleSort = new BubbleSort<int>();
+            bubbleSort.Sort(myArray);
 
-            myTree.Add(8);
-
-            myTree.Add(5);
-            myTree.Add(8);
-            myTree.Add(10);
-            myTree.Add(2);
-            myTree.Add(7);
-            myTree.Add(7);
-            myTree.Add(6);
-
-            foreach (var i in myTree)
+            foreach (var i in myArray)
             {
                 Console.WriteLine(i);
             }
-           
+
         }
     }
 }
