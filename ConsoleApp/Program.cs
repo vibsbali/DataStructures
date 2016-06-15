@@ -8,10 +8,10 @@ namespace ConsoleApp
     {
         private static void Main()
         {
-            var myArray = new[] {1, 2, 3, 4, 5, 6, 7};
+            var myArray = new[] {1, 9, 4, 8, 5, 3, 9, 0};
             
-            var bubbleSort = new BubbleSort<int>();
-            bubbleSort.Sort(myArray);
+            var insertionSort = new InsertionSort<int>();
+            insertionSort.Sort(myArray);
 
             foreach (var i in myArray)
             {
