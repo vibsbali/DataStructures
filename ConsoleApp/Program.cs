@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using DataStructures;
 
 namespace ConsoleApp
@@ -8,10 +7,10 @@ namespace ConsoleApp
     {
         private static void Main()
         {
-            var myArray = new[] {1, 9, 4, 8, 5, 3, 9, 0};
-            
-            var insertionSort = new InsertionSort<int>();
-            insertionSort.Sort(myArray);
+            var myArray = new[] {3, 8, 2, 1, 5, 5, 4, 6, 7};
+
+            var mergeSort = new MergeSort<int>();
+            mergeSort.Sort(myArray);
 
             foreach (var i in myArray)
             {
@@ -19,5 +18,7 @@ namespace ConsoleApp
             }
 
         }
+
+        
     }
 }
