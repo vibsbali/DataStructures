@@ -3,10 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{99ACF8AA-9B08-4F8C-A1AC-6FB9EEF6F725}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConcreteStructures", "ConcreteStructures\ConcreteStructures.csproj", "{A65EDB6D-9262-4A98-9601-DD52C6C2ADC0}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp", "ConsoleApp\ConsoleApp.csproj", "{D90726DB-50CD-4416-9CBA-ED9C97179917}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataStructures", "ConcreteStructuresTwo\DataStructures.csproj", "{01422298-CB70-44F8-82A8-3B5A1BBF2FC3}"
@@ -21,14 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{99ACF8AA-9B08-4F8C-A1AC-6FB9EEF6F725}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{99ACF8AA-9B08-4F8C-A1AC-6FB9EEF6F725}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{99ACF8AA-9B08-4F8C-A1AC-6FB9EEF6F725}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{99ACF8AA-9B08-4F8C-A1AC-6FB9EEF6F725}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A65EDB6D-9262-4A98-9601-DD52C6C2ADC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A65EDB6D-9262-4A98-9601-DD52C6C2ADC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A65EDB6D-9262-4A98-9601-DD52C6C2ADC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A65EDB6D-9262-4A98-9601-DD52C6C2ADC0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D90726DB-50CD-4416-9CBA-ED9C97179917}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D90726DB-50CD-4416-9CBA-ED9C97179917}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D90726DB-50CD-4416-9CBA-ED9C97179917}.Release|Any CPU.ActiveCfg = Release|Any CPU
