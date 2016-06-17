@@ -16,6 +16,20 @@ namespace ConsoleApp
             mySkipList.Add(2);
 
 
+            foreach (var i in mySkipList)
+            {
+                Console.WriteLine(i);
+            }
+
+            Console.WriteLine(mySkipList.Contains(0));
+
+            mySkipList.Remove(4);
+
+            foreach (var i in mySkipList)
+            {
+                Console.WriteLine(i);
+            }
+
         }
 
         

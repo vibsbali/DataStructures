@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Remoting.Messaging;
 using CoreNew;
 
 namespace DataStructures
@@ -22,12 +23,17 @@ namespace DataStructures
 
         public SkipList()
         {
-            
+            head = head = new SkipListNode<T>(default(T), 32 + 1); //max could be 24 levels
         }
 
         public IEnumerator<T> GetEnumerator()
         {
-            throw new NotImplementedException();
+            SkipListNode<T> cur = head.Next[0];
+            while (cur != null)
+            {
+                yield return cur.Value;
+                cur = cur.Next[0];
+            }
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -38,6 +44,8 @@ namespace DataStructures
         public void Add(T item)
         {
             int level = PickRandomLevel();
+
+            //level + 1 will ensure that a minimum of 1 level is selected
             SkipListNode<T> newNode = new SkipListNode<T>(item, level + 1);
 
             SkipListNode<T> current = head;
@@ -99,25 +107,86 @@ namespace DataStructures
 
         public void Clear()
         {
-            throw new NotImplementedException();
+            head = head = new SkipListNode<T>(default(T), 32 + 1); //max could be 24 levels
+            Count = 0;
         }
+        
 
         public bool Contains(T item)
         {
-            throw new NotImplementedException();
+            SkipListNode<T> cur = head;
+            for (int i = levels - 1; i >= 0; i--)
+            {
+                while (cur.Next[i] != null)
+                {
+                    int cmp = cur.Next[i].Value.CompareTo(item);
+                    if (cmp > 0)
+                    {
+                        // The value is too large, so go down one level
+                        // and take smaller steps.
+                        break;
+                    }
+                    if (cmp == 0)
+                    {
+                        // Found it!
+                        return true;
+                    }
+                    cur = cur.Next[i];
+                }
+            }
+            return false;
         }
 
         public void CopyTo(T[] array, int arrayIndex)
         {
-            throw new NotImplementedException();
+            if (array == null)
+            {
+                throw new ArgumentNullException("array");
+            }
+            int offset = 0;
+            foreach (T item in this)
+            {
+                array[arrayIndex + offset++] = item;
+            }
         }
 
         public bool Remove(T item)
         {
-            throw new NotImplementedException();
+            SkipListNode<T> cur = head;
+            bool removed = false;
+            // Walk down each level in the list (make big jumps).
+            for (int level = levels - 1; level >= 0; level--)
+            {
+                // While we're not at the end of the list:
+                while (cur.Next[level] != null)
+                {
+                    // If we found our node,
+                    if (cur.Next[level].Value.CompareTo(item) == 0)
+                    {
+                        // remove the node,
+                        cur.Next[level] = cur.Next[level].Next[level];
+                        removed = true;
+                        // and go down to the next level (where
+                        // we will find our node again if we're
+                        // not at the bottom level).
+                        break;
+                    }
+                    // If we went too far, go down a level.
+                    if (cur.Next[level].Value.CompareTo(item) > 0)
+                    {
+                        break;
+                    }
+                    cur = cur.Next[level];
+                }
+            }            if (removed)
+            {
+                Count--;
+            }
+            return removed;
         }
 
-        
-        public bool IsReadOnly { get; }
+
+        public
+            bool IsReadOnly => false;
     }
 }
