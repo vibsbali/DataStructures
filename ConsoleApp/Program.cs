@@ -7,15 +7,14 @@ namespace ConsoleApp
     {
         private static void Main()
         {
-            var myArray = new[] {3, 8, 2, 1, 5, 5, 4, 6, 7};
+            var mySkipList = new SkipList<int>();
 
-            var mergeSort = new MergeSort<int>();
-            mergeSort.Sort(myArray);
+            mySkipList.Add(4);
+            mySkipList.Add(1);
+            mySkipList.Add(5);
+            mySkipList.Add(3);
+            mySkipList.Add(2);
 
-            foreach (var i in myArray)
-            {
-                Console.WriteLine(i);
-            }
 
         }
 

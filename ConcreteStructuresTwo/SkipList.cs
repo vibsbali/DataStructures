@@ -8,6 +8,7 @@ namespace DataStructures
     public class SkipList<T> : ICollection<T> 
         where T : IComparable<T>
     {
+        // used to determine the random height of the node links
         private readonly Random rand = new Random();
 
         //The non-data node which starts the list
@@ -15,6 +16,14 @@ namespace DataStructures
 
         //There is always one level of depth(the base list)
         private int levels = 1;
+
+        // the number of items currently in the list
+        public int Count { get; private set; }
+
+        public SkipList()
+        {
+            
+        }
 
         public IEnumerator<T> GetEnumerator()
         {
@@ -29,38 +38,33 @@ namespace DataStructures
         public void Add(T item)
         {
             int level = PickRandomLevel();
+            SkipListNode<T> newNode = new SkipListNode<T>(item, level + 1);
 
-            var newNode = new SkipListNode<T>(item, level + 1);
-            var current = head;
-
-            for (int i = level; i >= 0; i--)
+            SkipListNode<T> current = head;
+            for (int i = levels - 1; i >= 0; i--)
             {
                 while (current.Next[i] != null)
                 {
-                    //LHS > RHS
                     if (current.Next[i].Value.CompareTo(item) > 0)
                     {
                         break;
                     }
-
                     current = current.Next[i];
                 }
-
                 if (i <= level)
                 {
-                    //Adding "c" to the list: a -> b -> d -> e
-                    //Current is node b and current.Next[i] is d
+                    // adding "c" to the list: a -> b -> d -> e
+                    // current is node b and current.Next[i] is d.
 
-                    //1. Link the new node (c) to existing node (d) :
-                    //c.Next = d
+                    // 1. Link the new node (c) to the existing node (d)
+                    // c.Next = d
                     newNode.Next[i] = current.Next[i];
 
-                    //Insert c into the list after b:
-                    //b.Next = c
+                    // Insert c into the list after b
+                    // b.Next = c
                     current.Next[i] = newNode;
                 }
             }
-
             Count++;
         }
 
@@ -113,7 +117,7 @@ namespace DataStructures
             throw new NotImplementedException();
         }
 
-        public int Count { get; private set; }
+        
         public bool IsReadOnly { get; }
     }
 }
