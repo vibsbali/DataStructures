@@ -78,14 +78,14 @@ namespace DataStructures
             Count--;
 
             //Now rebalance the tree again
-            int index = 0;
+            int currentParentIndex = 0;
 
             //We Start with index 0 i.e. root and go down
-            while (index < Count)
+            while (currentParentIndex < Count)
             {
                 //Get the left and right child indexes
-                int left = (2*index) + 1;
-                int right = (2*index) + 2;
+                int left = (2*currentParentIndex) + 1;
+                int right = (2*currentParentIndex) + 2;
 
                 //Make sure we are still within the heap
                 if (left >= Count)
@@ -96,15 +96,16 @@ namespace DataStructures
                 //Get the maximum child (index) between left and right child
                 int maxChildIndex = IndexOfMaxChild(left, right);
 
-                //Compare it with 
-                if (backingArray[index].CompareTo(backingArray[maxChildIndex]) > 0)
+                //Compare it with current parent of right and left nodes to check if current is bigger or less then
+                //children
+                if (backingArray[currentParentIndex].CompareTo(backingArray[maxChildIndex]) > 0)
                 {
-                    //The current item is larger than its childern (heap property is satisfied)
+                    //The current item is larger than its children (heap property is satisfied)
                     break;
                 }
 
-                Swap(index, maxChildIndex);
-                index = maxChildIndex;
+                Swap(currentParentIndex, maxChildIndex);
+                currentParentIndex = maxChildIndex;
             }
 
             return maxValue;
