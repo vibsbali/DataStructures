@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Runtime.Remoting.Messaging;
 using DataStructures;
 
 namespace ConsoleApp
@@ -11,19 +7,31 @@ namespace ConsoleApp
     {
         private static void Main()
         {
-            var heap = new Heap<int>();
+            var mySkipList = new SkipList<int>();
 
-            heap.Add(8);
-            heap.Add(6);
-            heap.Add(5);
-            heap.Add(3);
-            heap.Add(4);
-            heap.Add(10);
-            heap.Add(9);
-            heap.Add(10);
+            mySkipList.Add(4);
+            mySkipList.Add(1);
+            mySkipList.Add(5);
+            mySkipList.Add(3);
+            mySkipList.Add(2);
 
-            heap.RemoveMax();
+
+            foreach (var i in mySkipList)
+            {
+                Console.WriteLine(i);
+            }
+
+            Console.WriteLine(mySkipList.Contains(0));
+
+            mySkipList.Remove(4);
+
+            foreach (var i in mySkipList)
+            {
+                Console.WriteLine(i);
+            }
 
         }
+
+        
     }
 }
