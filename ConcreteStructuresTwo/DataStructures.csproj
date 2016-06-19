@@ -44,6 +44,7 @@
     <Compile Include="BubbleSort.cs" />
     <Compile Include="Deque.cs" />
     <Compile Include="DoublyLinkedList.cs" />
+    <Compile Include="Heap.cs" />
     <Compile Include="InsertionSort.cs" />
     <Compile Include="LinkedList.cs" />
     <Compile Include="MergeSort.cs" />
