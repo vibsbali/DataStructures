@@ -43,6 +43,7 @@
     <Compile Include="ArrayList.cs" />
     <Compile Include="Deque.cs" />
     <Compile Include="DoublyLinkedList.cs" />
+    <Compile Include="Heap.cs" />
     <Compile Include="LinkedList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queue.cs" />

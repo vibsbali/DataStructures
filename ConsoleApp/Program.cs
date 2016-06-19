@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using DataStructures;
 
 namespace ConsoleApp
@@ -8,23 +10,13 @@ namespace ConsoleApp
     {
         private static void Main()
         {
-            var myTree = new Tree<int>();
+            var names = new[] { "Vaibhav", "Vasudha", "Sheebu", "Mama", "Vaibhav"};
 
-            myTree.Add(8);
-
-            myTree.Add(5);
-            myTree.Add(8);
-            myTree.Add(10);
-            myTree.Add(2);
-            myTree.Add(7);
-            myTree.Add(7);
-            myTree.Add(6);
-
-            foreach (var i in myTree)
+            foreach (var name in names)
             {
-                Console.WriteLine(i);
+                Console.WriteLine(name.GetHashCode());
             }
-           
+
         }
     }
 }
