@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArrayList.cs" />
+    <Compile Include="AvlTree.cs" />
     <Compile Include="BubbleSort.cs" />
     <Compile Include="Deque.cs" />
     <Compile Include="DoublyLinkedList.cs" />
