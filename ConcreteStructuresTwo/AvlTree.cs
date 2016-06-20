@@ -187,6 +187,28 @@ namespace DataStructures
             }
         }
 
+
+        public void BreadthFirstTraversal(Action<T> actionDelegate)
+        {
+            var queue = new System.Collections.Generic.Queue<AvlTreeNode<T>>();
+            queue.Enqueue(Head);
+
+            while (queue.Count > 0)
+            {
+                var node = queue.Dequeue();
+                actionDelegate.Invoke(node.Value);
+
+                if (node.Left != null)
+                {
+                    queue.Enqueue(node.Left);
+                }
+                if (node.Right != null)
+                {
+                    queue.Enqueue(node.Right);
+                }
+            }
+        }
+
         public void InOrderTraversal(Action<T> actionDelegate)
         {
             TraverseInOrder(Head, actionDelegate);
