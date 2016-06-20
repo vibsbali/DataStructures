@@ -16,6 +16,8 @@ namespace ConsoleApp
             myavltree.Add(8);
             myavltree.Add(5);
             //myavltree.Add(12);
+
+            myavltree.InOrderTraversal(i => Console.WriteLine(i));
         }
 
         

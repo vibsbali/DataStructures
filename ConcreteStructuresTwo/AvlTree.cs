@@ -172,6 +172,51 @@ namespace DataStructures
 
         public int Count { get; private set; }
 
+        public void PostOrderTraversal(Action<T> actionDelegate)
+        {
+            TraversePostorder(Head, actionDelegate);
+        }
+
+        private void TraversePostorder(AvlTreeNode<T> current, Action<T> actionDelegate)
+        {
+            if (current != null)
+            {
+                TraversePostorder(current.Left, actionDelegate);
+                TraversePostorder(current.Right, actionDelegate);
+                actionDelegate.Invoke(current.Value);
+            }
+        }
+
+        public void InOrderTraversal(Action<T> actionDelegate)
+        {
+            TraverseInOrder(Head, actionDelegate);
+        }
+
+        private void TraverseInOrder(AvlTreeNode<T> current, Action<T> actionDelegate)
+        {
+            if (current != null)
+            {
+                TraverseInOrder(current.Left, actionDelegate);
+                actionDelegate.Invoke(current.Value);
+                TraverseInOrder(current.Right, actionDelegate);
+            }
+        }
+
+        public void PreOrderTraversal(Action<T> actionDelegate)
+        {
+            TraversePreorder(Head, actionDelegate);
+        }
+
+        private void TraversePreorder(AvlTreeNode<T> current, Action<T> actionDelegate)
+        {
+            if (current != null)
+            {
+                actionDelegate.Invoke(current.Value);
+                TraversePreorder(current.Left, actionDelegate);
+                TraversePreorder(current.Right, actionDelegate);
+            }
+        }
+
         public IEnumerator<T> GetEnumerator()
         {
             throw new NotImplementedException();
