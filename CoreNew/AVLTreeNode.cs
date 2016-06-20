@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CoreNew
 {
@@ -15,10 +11,35 @@ namespace CoreNew
 
         public T Value { get; private set; }
 
+        public int MaxLeftHeight => FindLeftWeight(this);
+        public int MaxRightHeight => FindRightWeight(this);
+
         public AvlTreeNode(T value, AvlTreeNode<T> parent)
         {
             Parent = parent;
             Value = value;
+        }
+
+        private int FindLeftWeight(AvlTreeNode<T> node)
+        {
+            var weight = 0;
+            while (node.Left != null)
+            {
+                weight++;
+                node = node.Left;
+            }
+            return weight;
+        }
+
+        private int FindRightWeight(AvlTreeNode<T> node)
+        {
+            var weight = 0;
+            if (node.Right != null)
+            {
+                weight++;
+                FindRightWeight(node.Right);
+            }
+            return weight;
         }
     }
 }

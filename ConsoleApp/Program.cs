@@ -7,29 +7,14 @@ namespace ConsoleApp
     {
         private static void Main()
         {
-            var mySkipList = new SkipList<int>();
+            var myavltree = new AvlTree<int>();
 
-            mySkipList.Add(4);
-            mySkipList.Add(1);
-            mySkipList.Add(5);
-            mySkipList.Add(3);
-            mySkipList.Add(2);
-
-
-            foreach (var i in mySkipList)
-            {
-                Console.WriteLine(i);
-            }
-
-            Console.WriteLine(mySkipList.Contains(0));
-
-            mySkipList.Remove(4);
-
-            foreach (var i in mySkipList)
-            {
-                Console.WriteLine(i);
-            }
-
+            myavltree.Add(8);
+            myavltree.Add(6);
+            myavltree.Add(15);
+            myavltree.Add(3);
+            myavltree.Add(9);
+            myavltree.Add(8);
         }
 
         
