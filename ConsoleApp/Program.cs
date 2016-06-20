@@ -9,12 +9,13 @@ namespace ConsoleApp
         {
             var myavltree = new AvlTree<int>();
 
-            myavltree.Add(8);
+            myavltree.Add(4);
+            myavltree.Add(2);
+            myavltree.Add(7);
             myavltree.Add(6);
-            myavltree.Add(15);
-            myavltree.Add(3);
-            myavltree.Add(9);
             myavltree.Add(8);
+            myavltree.Add(5);
+            //myavltree.Add(12);
         }
 
         
